@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Total price:
+  = @order.total_price
+%p
+  %strong Order status:
+  = @order.order_status
+%p
+  %strong Ship status:
+  = @order.ship_status
+%p
+  %strong Payment status:
+  = @order.payment_status
+= link_to 'Edit', edit_order_path(@order)
+|
+= link_to 'Back', orders_path

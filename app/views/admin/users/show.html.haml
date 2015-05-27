@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong Login:
+  = @user.login
+%p
+  %strong Name:
+  = @user.name
+%p
+  %strong Salt:
+  = @user.salt
+%p
+  %strong Encrypted password:
+  = @user.encrypted_password
+%p
+  %strong Last login at:
+  = @user.last_login_at
+%p
+  %strong Last login ip:
+  = @user.last_login_ip
+%p
+  %strong Source:
+  = @user.source
+= link_to 'Edit', edit_user_path(@user)
+|
+= link_to 'Back', users_path

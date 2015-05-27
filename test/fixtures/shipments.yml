@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: shipments
+#
+#  id         :integer          not null, primary key
+#  address_id :integer
+#  order_id   :integer
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address_id: 1
+  order_id: 1
+  user_id: 1
+
+two:
+  address_id: 1
+  order_id: 1
+  user_id: 1

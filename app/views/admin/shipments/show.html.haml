@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Address:
+  = @shipment.address_id
+%p
+  %strong Order:
+  = @shipment.order_id
+%p
+  %strong User:
+  = @shipment.user_id
+= link_to 'Edit', edit_shipment_path(@shipment)
+|
+= link_to 'Back', shipments_path

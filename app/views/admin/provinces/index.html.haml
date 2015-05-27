@@ -1,0 +1,16 @@
+%p#notice= notice
+%h1 Listing Provices
+%table
+  %thead
+    %tr
+      %th Name
+      %th{:colspan => "3"}
+  %tbody
+    - @provices.each do |provice|
+      %tr
+        %td= provice.name
+        %td= link_to 'Show', provice
+        %td= link_to 'Edit', edit_provice_path(provice)
+        %td= link_to 'Destroy', provice, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Provice', new_provice_path

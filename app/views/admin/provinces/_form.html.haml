@@ -1,0 +1,15 @@
+= form_for(@provice) do |f|
+  - if @provice.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@provice.errors.count, "error")
+        prohibited this provice from being saved:
+      %ul
+        - @provice.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .actions
+    = f.submit
