@@ -1,32 +1,25 @@
-%p#notice= notice
-%h1 Listing Products
-%table
-  %thead
-    %tr
-      %th Name
-      %th Price
-      %th Sku
-      %th Desc
-      %th Quantity
-      %th Pic1
-      %th Pic2
-      %th Pic3
-      %th Pic4
-      %th{:colspan => "3"}
-  %tbody
-    - @products.each do |product|
-      %tr
-        %td= product.name
-        %td= product.price
-        %td= product.sku
-        %td= product.desc
-        %td= product.quantity
-        %td= product.pic1
-        %td= product.pic2
-        %td= product.pic3
-        %td= product.pic4
-        %td= link_to 'Show', product
-        %td= link_to 'Edit', edit_product_path(product)
-        %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Product', new_product_path
+.products.index_page
+  .container
+    .row.xcm_index_header
+      %a{:role => "button", :class => "btn btn-success pull-right popup", "data-remote-url" => new_admin_product_path }= fa_icon("fw plus") + "新建商品"
+    .row
+      %ul.list-group.xcm-list-group
+        - @products.each do |p|
+          %li.list-group-item
+            .xcm_item_icon
+              = image_tag p.pic1.thumb.url || "http://placehold.it/50x50"
+            .xcm_item_name_and_desc
+              .xcm_item_name
+                = p.name
+              .xcm_item_desc
+                = p.name
+
+            .xcm_actions.pull-right
+              %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_product_path(p) }= "修改产品"
+
+            .clearfix
+
+      = paginate @products
+
+
+

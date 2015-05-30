@@ -1,0 +1,30 @@
+.branches.index_page
+  .container
+    .row.xcm_index_header
+      .btn-group{:role => "group"}
+        %a.btn.btn-default.disabled{:role => "button"}= fa_icon(:list)
+        %a.btn.btn-default{:role => "button", :href => list_admin_branches_path}= fa_icon("arrows")
+
+      %a{:role => "button", :class => "btn btn-success pull-right popup", "data-remote-url" => new_admin_branch_path }= fa_icon("fw plus") + "新建门店"
+    .row
+      %ul.list-group.xcm-list-group
+        - @branches.each do |b|
+          %li.list-group-item
+            .xcm_item_icon
+            .xcm_item_name_and_desc
+              .xcm_item_name
+                = b.name
+                (
+                = b.contact
+                )
+              .xcm_item_desc
+                = b.address
+
+            .xcm_actions.pull-right
+              %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_branch_path(b) }= "修改门店"
+              = dropdown "移动/删除" do
+                = dropdown_item "删除", admin_branch_path(b),  :data => {:confirm => "删除分类？", :method => :delete}
+
+            .clearfix
+
+

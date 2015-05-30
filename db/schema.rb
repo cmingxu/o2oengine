@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526011851) do
+ActiveRecord::Schema.define(version: 20150529140041) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -25,10 +25,23 @@ ActiveRecord::Schema.define(version: 20150526011851) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "branches", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "address",    limit: 255
+    t.string   "contact",    limit: 255
+    t.decimal  "lng",                    precision: 10
+    t.decimal  "lat",                    precision: 10
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "icon",       limit: 255
+    t.integer  "position",   limit: 4
+    t.text     "desc",       limit: 65535
   end
 
   create_table "cities", force: :cascade do |t|
@@ -36,6 +49,13 @@ ActiveRecord::Schema.define(version: 20150526011851) do
     t.integer  "province_id", limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "o2o_settings", force: :cascade do |t|
+    t.string   "var",        limit: 255
+    t.string   "value",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -57,17 +77,19 @@ ActiveRecord::Schema.define(version: 20150526011851) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "price",      limit: 4
-    t.string   "sku",        limit: 255
-    t.text     "desc",       limit: 65535
-    t.integer  "quantity",   limit: 4
-    t.string   "pic1",       limit: 255
-    t.string   "pic2",       limit: 255
-    t.string   "pic3",       limit: 255
-    t.string   "pic4",       limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",        limit: 255
+    t.integer  "price",       limit: 4
+    t.string   "sku",         limit: 255
+    t.text     "desc",        limit: 65535
+    t.integer  "quantity",    limit: 4
+    t.string   "pic1",        limit: 255
+    t.string   "pic2",        limit: 255
+    t.string   "pic3",        limit: 255
+    t.string   "pic4",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "category_id", limit: 4
+    t.string   "pinyin",      limit: 255
   end
 
   create_table "provices", force: :cascade do |t|
@@ -82,6 +104,19 @@ ActiveRecord::Schema.define(version: 20150526011851) do
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.integer  "branch_id",          limit: 4
+    t.string   "login",              limit: 255
+    t.string   "encrypted_password", limit: 255
+    t.string   "salt",               limit: 255
+    t.string   "avatar",             limit: 255
+    t.string   "last_login_ip",      limit: 255
+    t.datetime "last_login_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "sub_categories", force: :cascade do |t|

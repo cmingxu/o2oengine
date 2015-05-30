@@ -1,10 +1,10 @@
-class UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.all.page params[:page]
   end
 
   # GET /users/1

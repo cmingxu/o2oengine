@@ -1,15 +1,8 @@
 GIT
-  remote: git@github.com:Maxim-Filimonov/hashie_rails.git
-  revision: 9c5e578387d2e7c85f3ad19a7533ac1b616d684a
+  remote: git@github.com:flyerhzm/chinese_pinyin.git
+  revision: 03de64b62d4f8f099bf64fd3dbb3e80a7b4d51a5
   specs:
-    hashie_rails (0.0.4)
-      hashie (>= 3.0)
-
-GIT
-  remote: git@github.com:intridea/hashie.git
-  revision: a57c88243f69fd78a9f836aa9c58085bd10ef0cf
-  specs:
-    hashie (3.4.2)
+    chinese_pinyin (0.7.0)
 
 GIT
   remote: git@github.com:kickstarter/rack-attack.git
@@ -56,6 +49,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_list (0.7.0)
+      activerecord (>= 3.0)
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -115,6 +110,8 @@ GEM
     faye-websocket (0.7.5)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.5)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -125,6 +122,7 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    hashie (3.4.0)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -348,6 +346,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   annotate (~> 2.6.5)
   awesome_print
   bower-rails (~> 0.9.1)
@@ -356,12 +355,12 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   carrierwave (= 0.10.0)
+  chinese_pinyin!
   coffee-rails (~> 4.1.0)
   easy_captcha
   faye-websocket (~> 0.7.5)
+  font-awesome-rails (~> 4.2.0)
   haml-rails
-  hashie!
-  hashie_rails!
   httparty (~> 0.13.1)
   jbuilder (~> 2.0)
   jquery-rails

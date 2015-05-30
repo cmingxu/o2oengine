@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Category.create :name => "白酒"
+Category.create :name => "啤酒"
+Category.create :name => "洋酒"
+Category.create :name => "黄酒"
+Category.create :name => "养生酒"
+Category.create :name => "收藏酒"
+Category.create :name => "陈年老酒"
+
+O2oSetting.province="内蒙古"
+O2oSetting.city="赤峰市"

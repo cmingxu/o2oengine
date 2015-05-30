@@ -2,9 +2,15 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title O2oengine
+    %title= @title || Setting.title || Setting.sitenme
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    .container
+      .header.row
+        = render :partial => "widgets/header"
+      .row.main_content
+        = yield
+      .footer.row
+        = render :partial => "widgets/footer"

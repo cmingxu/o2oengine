@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: o2o_settings
+#
+#  id         :integer          not null, primary key
+#  var        :string(255)
+#  value      :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  var: MyString
+  value: MyString
+
+two:
+  var: MyString
+  value: MyString

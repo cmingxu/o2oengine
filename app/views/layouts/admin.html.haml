@@ -2,9 +2,28 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title O2oengine
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %title= Setting.title || Setting.sitename
+    = stylesheet_link_tag    'admin', media: 'all'
+    = javascript_include_tag 'admin'
     = csrf_meta_tags
   %body
-    = yield
+    = nav_bar :inverse => true, :fixed => :top, :brand => Setting.sitename, :responsive => true do
+      = menu_group do
+        = menu_item "Root", ""
+
+    .admin
+      .sidebar
+        = sidebar_item_helper("订单管理", admin_orders_path,   :plus, :order)
+        = sidebar_item_helper("商品管理", admin_products_path, :plus, :product)
+        = sidebar_item_helper("门店管理", admin_branches_path,  :plus, :branch)
+        = sidebar_item_helper("品类管理", admin_categories_path,:plus, :category)
+        = sidebar_item_helper("促销管理", admin_products_path, :plus, :campaign)
+        = sidebar_item_helper("系统设置", admin_settings_path, :plus, :settings)
+        = sidebar_item_helper("人员设置", admin_users_path,   :user, :users)
+
+      .container-fluid
+        -#= breadcrumb
+        = yield
+        #overlay
+          #overlay_container
+

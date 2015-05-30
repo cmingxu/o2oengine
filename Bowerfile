@@ -3,3 +3,7 @@
 
 asset 'bootstrap'
 asset 'normalize'
+asset 'underscore'
+asset 'underscore.string'
+asset 'normalize.css'
+

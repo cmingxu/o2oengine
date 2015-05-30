@@ -1,0 +1,20 @@
+%ul.categories_nav
+  -#%li
+    -#= dropdown "全部商品分类" do
+      -#- @categories.each do |c|
+        -#= dropdown_item c.name, ""
+
+  - @categories.each do |c|
+    %li
+      = link_to c.name, products_path(:category_id => c.id)
+
+.products_list
+  - @products.each do |p|
+    %a.product_item.col-sm-6.col-md-3{:href => product_path(p)}
+      .product_item_icon
+        = image_tag p.pic1.try(:thumb).try(:url) || "http://placehold.it/120x180"
+      .product_item_small_icons
+      .product_item_price
+        = p.price
+      .product_item_desc
+        = p.desc

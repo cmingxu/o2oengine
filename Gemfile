@@ -43,6 +43,8 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'chinese_pinyin', :git => "git@github.com:flyerhzm/chinese_pinyin.git"
+
 
 
 gem "haml-rails"
@@ -64,15 +66,17 @@ gem 'resque-web', require: 'resque_web'
 gem 'faye-websocket', '~>0.7.5'
 gem 'quiet_assets', :group => :development
 gem 'annotate', '~> 2.6.5'
-gem 'hashie', :git => 'git@github.com:intridea/hashie.git'
-gem "hashie_rails", :git => "git@github.com:Maxim-Filimonov/hashie_rails.git"
 gem 'kaminari'
 gem 'rack-weixin'
 gem 'rack-attack', :git => "git@github.com:kickstarter/rack-attack.git"
 gem 'wx_pay'
 
+gem 'font-awesome-rails', '~> 4.2.0'
 
 
+
+
+gem 'acts_as_list'
 
 gem 'easy_captcha'
 gem 'rmagick'

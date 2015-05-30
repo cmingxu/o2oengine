@@ -1,23 +1,35 @@
 Rails.application.routes.draw do
 
-  namespace :dashboard do
-  get 'base/index'
-  end
+  get "add_cart" => "cart#add"
+  get "remove_cart" => "cart#remove"
+  get "decrease_cart" => "cart#decrease"
+  get "carts" => "cart#index"
+  patch "check_out" => "cart#check_out"
 
-  namespace :admin do
-  get 'base/index'
-  end
-
-  get 'welcome/index'
+  resources :products, :only => [:index, :show]
 
   namespace :dashboard do
+    get '/' => "base#index"
     resources :addresses
     resources :orders
   end
 
   namespace :admin do
+    get '/' => "base#index"
     resources :sub_categories
-    resources :categories
+    resources :categories do
+      member do
+        patch :move_higher
+        patch :move_lower
+      end
+    end
+    resources :branches do
+      collection do
+        get :list
+      end
+    end
+
+    get 'settings/index'
     resources :cities
     resources :provices
     resources :shipments
@@ -26,6 +38,8 @@ Rails.application.routes.draw do
     resources :order_items
     resources :orders
     resources :products
+
+    get 'settings' => 'settings#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

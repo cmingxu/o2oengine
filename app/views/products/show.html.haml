@@ -1,0 +1,35 @@
+= image_tag @product.pic1.try(:thump).try(:url) || "http://placehold.it/120x180"
+
+
+= form_tag add_cart_path, :method => :get do
+  = link_to "-", "javascript:change_quantity(-1)", :class => "quantity_minus"
+  = text_field_tag "quantity", "1", :class => "quantity-field text-center", :id => "quantity", :onblur => "correct_quantity()"
+  = link_to "+", "javascript:change_quantity(1)", :class => "quantity_plus"
+  = hidden_field_tag "id", @product.id
+  = submit_tag "加入购物车", :class => "btn btn-danger"
+
+:javascript
+  function correct_quantity(){
+    quantity = parseInt($("#quantity").val());
+    if(isNaN(quantity)){
+      quantity = 1;
+    }
+
+    $("#quantity").val(quantity);
+  }
+  function change_quantity(num){
+    quantity = parseInt($("#quantity").val());
+    if(isNaN(quantity)){
+      quantity = 1;
+    }
+
+    quantity += num;
+
+    if(quantity <= 0){
+      quantity = 1;
+    }
+
+    $("#quantity").val(quantity);
+  }
+
+

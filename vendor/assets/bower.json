@@ -2,8 +2,9 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "bootstrap": "latest",
-    "normalize": "latest"
-  },
-  "resolutions": {
+    "normalize": "latest",
+    "underscore": "latest",
+    "underscore.string": "latest",
+    "normalize.css": "latest"
   }
 }

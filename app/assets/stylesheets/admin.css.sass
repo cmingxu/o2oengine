@@ -1,0 +1,143 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require_self
+ */
+
+
+
+$sidebar-bg: #e7e7ea
+$sidebar-color: #acada2
+$sidebar-active-bg: white
+$sidebar-active-color: #272727
+$sidebar-active-border-color: #eee
+$bg-dark-gray: #eee
+
+$font-weight-bold: 700
+$font-size-big: 1.2em
+
+@mixin block_vertical_align()
+  position: relative
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+
+.admin
+  padding-left: 120px
+  padding-top: 50px
+  .btn
+    padding: 3px 20px
+    border-radius: 0px
+
+  .sidebar
+    position: absolute
+    left: 0
+    width: 120px
+    height: 100%
+    background-color: $sidebar-bg
+    color: $sidebar-color
+    padding-top: 20px
+    .sidebar_item
+      padding: 3px 5px
+      width: 100%
+      a
+        display: block
+        height: 100%
+        width: 100%
+        color: $sidebar-color
+        text-decoration: none
+        &:hover
+          color: darken($sidebar-color, 30%)
+    .active
+      background-color: $sidebar-active-bg
+      color: $sidebar-active-color
+      border-left: 5px solid $sidebar-active-border-color
+  .index_page
+    .xcm_index_header
+      padding-top: 10px
+      padding-bottom: 10px
+    .xcm-list-group
+      .list-group-item
+        cursor: pointer
+
+        .xcm_item_icon
+          display: inline-block
+          float: left
+        .xcm_item_name_and_desc
+          margin-left: 10px
+          display: inline-block
+          float: left
+          .xcm_item_name
+            font-weight: $font-weight-bold
+            font-size: $font-size-big
+
+  #map_container
+    height: 500px
+  #overlay
+    display: none
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0px
+    left: 0px
+    background-color: rgba(0,0,0, 0.7)
+
+    #overlay_container
+      width: 500px
+      margin: 0px auto
+      background-color: white
+      z-index: 3
+      @include block_vertical_align
+  .actions
+    text-align: center
+    background-color: #f4f5f9
+    padding: 10px
+  .admin_form_head
+    background-color: #f4f5f9
+    padding: 10px
+    font-weight: $font-weight-bold
+    font-size: $font-size-big
+  .form_body
+    background-color: white
+    padding: 20px
+  .dropdown
+    display: inline-block
+    .dropdown_menus
+      list-style: none
+      position: absolute
+      right: 0
+      border: 1px solid #adadad
+      padding: 0px 0px
+      z-index: 10
+      li
+        overflow: hidden
+        background-color: white
+        &:nth-child(1)
+          border-top: none
+        &:hover
+          color: #333
+          background-color: #e6e6e6
+        a
+          display: inline-block
+          padding: 3px 20px
+          height: 100%
+          width: 100%
+          text-decoration: none
+          color: #333
+
+    .dropdown-close
+      display: none
+    i
+      vertical-align: top

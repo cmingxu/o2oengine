@@ -1,10 +1,10 @@
-class ProductsController < Admin::BaseController
+class Admin::ProductsController < Admin::BaseController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.all.page params[:page]
   end
 
   # GET /products/1
@@ -15,10 +15,12 @@ class ProductsController < Admin::BaseController
   # GET /products/new
   def new
     @product = Product.new
+    render layout: false
   end
 
   # GET /products/1/edit
   def edit
+    render layout: false
   end
 
   # POST /products
@@ -28,7 +30,7 @@ class ProductsController < Admin::BaseController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to admin_products_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class ProductsController < Admin::BaseController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to admin_products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }

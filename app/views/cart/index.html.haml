@@ -1,0 +1,42 @@
+.cart_page
+  .row
+    .pull-right
+      = link_to "马上结算", check_out_path, :class => "btn btn-danger", :method => :patch
+      或者
+      = link_to "继续逛逛", products_path
+
+  %table.cart_table.table-stripped.col-md-12.table-colored
+    %thead
+      %th.text-center 商品
+      %th 单价
+      %th 数量
+      %th 小计
+      %th 操作
+    %tbody
+      - @cart.line_items.each do |li|
+        %tr
+          %td
+            = image_tag li.product.pic1.thumb.url || "http://placehold.it/100x100"
+            = li.product.name
+            = li.product.desc
+          %td
+            = li.product.price
+          %td
+            = link_to "-", decrease_cart_path(:id => li.id, :quantity => 1), :class => "quantity_minus"
+            = text_field_tag "quantity", li.quantity, :class => "text-center quantity-field", :disabled => true
+            = link_to "+", add_cart_path(:id => li.id, :quantity => 1), :class => "quantity_plus"
+          %td.price= li.price
+          %td
+            = link_to "删除", remove_cart_path(:id => li.id)
+  .row
+    .count_notice.col-md-3.col-md-offset-5.text-right
+      已选择
+      %span= @cart.line_items.map(&:quantity).sum
+      件商品
+    .total_price_notice.col-md-2.text-right
+      总价
+      %span= @cart.line_items.map(&:price).sum
+    .check_out_link.col-md-2.text-right
+      = link_to "马上结算", check_out_path, :class => "btn-danger btn", :method => :patch
+
+

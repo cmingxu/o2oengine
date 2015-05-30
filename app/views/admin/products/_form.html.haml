@@ -1,47 +1,42 @@
-= form_for(@product) do |f|
-  - if @product.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@product.errors.count, "error")
-        prohibited this product from being saved:
-      %ul
-        - @product.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.label :name
-    %br/
-    = f.text_field :name
-  .field
-    = f.label :price
-    %br/
-    = f.number_field :price
-  .field
-    = f.label :sku
-    %br/
-    = f.text_field :sku
-  .field
-    = f.label :desc
-    %br/
-    = f.text_area :desc
-  .field
-    = f.label :quantity
-    %br/
-    = f.number_field :quantity
-  .field
-    = f.label :pic1
-    %br/
-    = f.text_field :pic1
-  .field
-    = f.label :pic2
-    %br/
-    = f.text_field :pic2
-  .field
-    = f.label :pic3
-    %br/
-    = f.text_field :pic3
-  .field
-    = f.label :pic4
-    %br/
-    = f.text_field :pic4
+.admin_form_head
+  - if @product.persisted?
+    修改商品
+  - else
+    新建商品
+
+= form_for([:admin, @product]) do |f|
+  .form_body
+    .row
+      = f.label :name, "产品名称", :class => "col-md-3"
+      = f.text_field :name, :class => "col-md-6"
+    .row
+      = f.label :price, "价格", :class => "col-md-3"
+      = f.number_field :price, :class => "col-md-6"
+    .row
+      = f.label :sku, "SKU", :class => "col-md-3"
+      = f.text_field :sku, :class => "col-md-6"
+    .row
+      = f.label :quantity, "数量", :class => "col-md-3"
+      = f.number_field :quantity, :class => "col-md-6"
+    .row
+      = f.label :category_id, "分类", :class => "col-md-3"
+      = f.select :category_id, options_for_select(Category.all.map{|c| [c.name, c.id]}, @product.category_id), :class => "col-md-6"
+    .row
+      = f.label :desc, "简单描述", :class => "col-md-3"
+      = f.text_area :desc, :class => "col-md-6"
+    .row
+      .col-md-3
+        = image_tag @product.pic1.try(:thumb).try(:url) || "http://placehold.it/40x40"
+        = f.file_field :pic1
+      .col-md-3
+        = image_tag @product.pic2.try(:thumb).try(:url) || "http://placehold.it/40x40"
+        = f.file_field :pic2
+      .col-md-3
+        = image_tag @product.pic3.try(:thumb).try(:url) || "http://placehold.it/40x40"
+        = f.file_field :pic3
+      .col-md-3
+        = image_tag @product.pic4.try(:thumb).try(:url) || "http://placehold.it/40x40"
+        = f.file_field :pic4
   .actions
-    = f.submit
+    = f.submit "提交", :class => "btn btn-success", :id => "submit_btn"
+    = link_to "取消", "javascript:close_popup()", :role => "button", :class => "btn btn-default"

@@ -1,16 +1,27 @@
-%p#notice= notice
-%h1 Listing Categories
-%table
-  %thead
-    %tr
-      %th Name
-      %th{:colspan => "3"}
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td= category.name
-        %td= link_to 'Show', category
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Category', new_category_path
+.categories.index_page
+  .container
+    .row.xcm_index_header
+      %a{:role => "button", :class => "btn btn-success pull-right popup", "data-remote-url" => new_admin_category_path }= fa_icon("fw plus") + "新建分类"
+    .row
+      %ul.list-group.xcm-list-group
+        - @categories.each do |c|
+          %li.list-group-item
+            .xcm_item_icon
+              = image_tag c.icon.thumb.url || "http://placehold.it/50x50"
+            .xcm_item_name_and_desc
+              .xcm_item_name
+                = c.name
+              .xcm_item_desc
+                = c.name
+
+            .xcm_actions.pull-right
+              %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_category_path(c) }= "修改分类"
+              = dropdown "移动/删除", :class => "btn btn-default" do
+                = dropdown_item "删除", admin_category_path(c),  :data => {:confirm => "删除分类？", :method => :delete}
+                - unless c.first?
+                  = dropdown_item "向上移动", move_higher_admin_category_path(c), :data => { :method => :patch }
+                - unless c.last?
+                  = dropdown_item "向下移动", move_lower_admin_category_path(c), :data => { :method => :patch }
+
+            .clearfix
+
