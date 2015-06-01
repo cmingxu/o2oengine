@@ -1,8 +1,8 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :application, 'lbpark'
-set :repo_url, 'git@github.com:arieso/lbpark.git'
+set :application, 'o2oengine'
+set :repo_url, 'git@github.com:cmingxu/o2oengine.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call

@@ -31,7 +31,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-rvm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,10 +53,7 @@ gem 'chinese_pinyin', :git => "git@github.com:flyerhzm/chinese_pinyin.git"
 
 gem "haml-rails"
 
-gem 'capistrano-rails', group: :development
 gem 'awesome_print'
-gem 'capistrano-bundler'
-gem 'capistrano-rvm'
 gem 'rails_kindeditor', '0.4.5'
 
 gem 'carrierwave', '0.10.0'
@@ -70,7 +70,6 @@ gem 'annotate', '~> 2.6.5'
 gem 'kaminari'
 gem 'rack-weixin'
 gem 'rack-attack', :git => "git@github.com:kickstarter/rack-attack.git"
-gem 'wx_pay'
 
 gem 'font-awesome-rails', '~> 4.2.0'
 
