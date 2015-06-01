@@ -1,8 +1,8 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+lock '3.4.0'
 
 set :application, 'o2oengine'
-set :repo_url, 'git@github.com:cmingxu/o2oengine.git'
+set :repo_url, 'git@git-cmingxu:cmingxu/o2oengine.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -39,7 +39,7 @@ set :rvm_ruby_version, '2.1.5'
 set :default_env, { rvm_bin_path: '/home/ubuntu/.rvm/bin' }
 
 namespace :deploy do
-  task :change_o2oengin_permission do
+  task :change_o2oengine_permission do
     on roles(:all) do |host|
       execute "chmod a+x #{current_path}/config/o2oengine.sh"
     end
