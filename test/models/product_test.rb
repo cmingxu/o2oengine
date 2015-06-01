@@ -15,6 +15,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  category_id :integer
+#  pinyin      :string(255)
 #
 
 require 'test_helper'

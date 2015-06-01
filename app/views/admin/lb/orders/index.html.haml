@@ -1,0 +1,22 @@
+.orders.index_page
+  .container
+    .row.xcm_index_header
+      %a{:role => "button", :class => "btn btn-success pull-right ", :href => admin_lb_orders_path }
+        = fa_icon("fw refresh")
+    .row
+      %ul.list-group.xcm-list-group
+        - @orders.each do |b|
+          %li.list-group-item
+            .xcm_item_icon
+              = image_tag b.product.icon.mini.url || "http://placehold.it/50x50"
+            .xcm_item_name_and_desc
+              .xcm_item_name
+              .xcm_item_desc
+
+            .xcm_actions.pull-right
+              %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_lb_order_path(b) }= "修改品牌"
+
+            .clearfix
+
+
+

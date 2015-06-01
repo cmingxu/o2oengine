@@ -26,6 +26,10 @@ $bg-dark-gray: #eee
 $font-weight-bold: 700
 $font-size-big: 1.2em
 
+html.turbolinks-progress-bar::before 
+  background-color: red !important
+  height: 5px !important
+
 @mixin block_vertical_align()
   position: relative
   top: 50%
@@ -40,6 +44,19 @@ $font-size-big: 1.2em
   .btn
     padding: 3px 20px
     border-radius: 0px
+  .loading_indicator
+    background-color: rgba(black, .3)
+    position: fixed
+    top: 0px
+    left: 0px
+    height: 100%
+    width: 100%
+    text-align: center
+    z-index: 20
+
+    i
+      margin-top: 200px
+      
 
   .sidebar
     position: absolute

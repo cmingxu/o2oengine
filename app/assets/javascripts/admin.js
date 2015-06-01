@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery.turbolinks
 //= require turbolinks
 //= require underscore
 //= require underscore.string
@@ -20,6 +21,13 @@
 function close_popup() {
   $("#overlay").fadeOut();
 }
+
+
+$(document).on('page:fetch', function () {
+  $(".loading_indicator").removeClass('hide');
+}).on('page:receive', function () {
+  $(".loading_indicator").addClass('hide');
+})
 
 $(document).ready(function () {
   $(document).keyup(function (e) {

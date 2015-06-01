@@ -3,8 +3,8 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title= Setting.title || Setting.sitename
-    = stylesheet_link_tag    'admin', media: 'all'
-    = javascript_include_tag 'admin'
+    = stylesheet_link_tag    'admin', media: 'all', turbolinks: true
+    = javascript_include_tag 'admin', turbolinks: true
     = csrf_meta_tags
   %body
     = nav_bar :inverse => true, :fixed => :top, :brand => Setting.sitename, :responsive => true do
@@ -12,14 +12,21 @@
         = menu_item "Root", ""
 
     .admin
-      .sidebar
-        = sidebar_item_helper("订单管理", admin_orders_path,   :plus, :order)
-        = sidebar_item_helper("商品管理", admin_products_path, :plus, :product)
-        = sidebar_item_helper("门店管理", admin_branches_path,  :plus, :branch)
-        = sidebar_item_helper("品类管理", admin_categories_path,:plus, :category)
-        = sidebar_item_helper("促销管理", admin_products_path, :plus, :campaign)
+      .loading_indicator.hide
+        = fa_icon "spinner 4x spin"
+      .sidebar{"data-turbolinks-permanent" => true}
+        -#= sidebar_item_helper("订单管理", admin_orders_path,   :plus, :order)
+        -#= sidebar_item_helper("商品管理", admin_products_path, :plus, :product)
+        -#= sidebar_item_helper("门店管理", admin_branches_path,  :plus, :branch)
+        -#= sidebar_item_helper("品类管理", admin_categories_path,:plus, :category)
+        -#= sidebar_item_helper("促销管理", admin_products_path, :plus, :campaign)
+        = sidebar_item_helper("订单管理", admin_lb_orders_path, :money, :order)
+        = sidebar_item_helper("品牌管理", admin_lb_brands_path, :apple, :product)
+        = sidebar_item_helper("产品管理", admin_lb_products_path, :gift, :product)
+        = sidebar_item_helper("水券管理", admin_lb_coupons_path, :gift, :coupon)
+        = sidebar_item_helper("用户管理", admin_users_path,   :user, :users)
+
         = sidebar_item_helper("系统设置", admin_settings_path, :plus, :settings)
-        = sidebar_item_helper("人员设置", admin_users_path,   :user, :users)
 
       .container-fluid
         -#= breadcrumb

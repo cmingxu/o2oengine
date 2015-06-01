@@ -39,7 +39,28 @@ Rails.application.routes.draw do
     resources :orders
     resources :products
 
+    namespace :lb do
+      resources :products do
+        member do
+          patch :move_lower
+          patch :move_higher
+        end
+      end
+      resources :orders
+      resources :brands do
+        member do
+          patch :move_higher
+          patch :move_lower
+        end
+      end
+      resources :coupons
+    end
+
     get 'settings' => 'settings#index'
+  end
+
+  namespace :wechat do
+    get "/" => "base#index"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

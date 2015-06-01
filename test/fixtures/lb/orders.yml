@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  coupon_id: 1
+  product_id: MyString
+  quantity: 1
+  staff_id: 1
+  status: MyString
+  delay: false
+  deliver_begin_at: 2015-05-31 08:18:43
+  reached_at: 2015-05-31 08:18:43
+
+two:
+  user_id: 1
+  coupon_id: 1
+  product_id: MyString
+  quantity: 1
+  staff_id: 1
+  status: MyString
+  delay: false
+  deliver_begin_at: 2015-05-31 08:18:43
+  reached_at: 2015-05-31 08:18:43

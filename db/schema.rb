@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529140041) do
+ActiveRecord::Schema.define(version: 20150531022711) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -49,6 +49,65 @@ ActiveRecord::Schema.define(version: 20150529140041) do
     t.integer  "province_id", limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "lb_brands", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "water_type", limit: 255
+    t.string   "icon",       limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "desc",       limit: 65535
+    t.integer  "position",   limit: 4
+  end
+
+  create_table "lb_coupons", force: :cascade do |t|
+    t.integer  "product_id",     limit: 4
+    t.integer  "count",          limit: 4
+    t.integer  "price",          limit: 4
+    t.integer  "remain_count",   limit: 4
+    t.integer  "user_id",        limit: 4
+    t.string   "coupon_type",    limit: 255
+    t.string   "prepare_id",     limit: 255
+    t.string   "transaction_id", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "lb_orders", force: :cascade do |t|
+    t.integer  "user_id",          limit: 4
+    t.integer  "coupon_id",        limit: 4
+    t.string   "product_id",       limit: 255
+    t.integer  "quantity",         limit: 4
+    t.integer  "staff_id",         limit: 4
+    t.string   "status",           limit: 255
+    t.boolean  "delay",            limit: 1
+    t.datetime "deliver_begin_at"
+    t.datetime "reached_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "lb_products", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.integer  "brand_id",     limit: 4
+    t.integer  "coupon_count", limit: 4
+    t.integer  "reward_count", limit: 4
+    t.string   "water_type",   limit: 255
+    t.integer  "price",        limit: 4
+    t.text     "desc",         limit: 65535
+    t.string   "icon",         limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "position",     limit: 4
+  end
+
+  create_table "lb_user_brands", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "brand_id",   limit: 4
+    t.boolean  "highlight",  limit: 1
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "o2o_settings", force: :cascade do |t|

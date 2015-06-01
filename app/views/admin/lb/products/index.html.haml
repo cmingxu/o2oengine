@@ -1,0 +1,31 @@
+.products.index_page
+  .container
+    .row.xcm_index_header
+      %a{:role => "button", :class => "btn btn-success pull-right popup", "data-remote-url" => new_admin_lb_product_path }= fa_icon("fw plus") + "新建品牌"
+    .row
+      %ul.list-group.xcm-list-group
+        - @products.each do |b|
+          %li.list-group-item
+            .xcm_item_icon
+              = image_tag b.icon.mini.url || "http://placehold.it/50x50"
+            .xcm_item_name_and_desc
+              .xcm_item_name
+                = b.name
+              .xcm_item_desc
+                = b.desc
+                (
+                = b.price
+                元)
+
+            .xcm_actions.pull-right
+              %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_lb_product_path(b) }= "修改品牌"
+              = dropdown "移动/删除", :class => "btn btn-default" do
+                = dropdown_item "删除", admin_lb_product_path(b),  :data => {:confirm => "删除品牌？", :method => :delete}
+                - unless b.first?
+                  = dropdown_item "向上移动", move_higher_admin_lb_product_path(b), :data => { :method => :patch }
+                - unless b.last?
+                  = dropdown_item "向下移动", move_lower_admin_lb_product_path(b), :data => { :method => :patch }
+
+            .clearfix
+
+

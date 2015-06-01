@@ -1,0 +1,35 @@
+.admin_form_head
+  - if @lb_product.persisted?
+    修改产品
+  - else
+    新建产品
+
+= form_for([:admin, @lb_product], :id => "product_form", :multipart => true) do |f|
+  .form_body
+    .row
+      = f.label :name, "产品", :class => "col-md-3"
+      = f.text_field :name, :class => "col-md-6"
+    .row
+      = f.label :brand_id, "品牌", :class => "col-md-3"
+      = f.select :brand_id, options_for_select(Lb::Brand.all.map{|b| [b.name, b.id]}, @lb_product.brand_id), :class => "col-md-6"
+    .row
+      = f.label :coupon_count, "总数（例如14）", :class => "col-md-3"
+      = f.text_field :coupon_count, :class => "col-md-6"
+    .row
+      = f.label :reward_count, "赠数（例如4）", :class => "col-md-3"
+      = f.text_field :reward_count, :class => "col-md-6"
+    .row
+      = f.label :price, "价格（例如100）", :class => "col-md-3"
+      = f.text_field :price, :class => "col-md-6"
+    .row
+      = f.label :desc, "描述", :class => "col-md-3"
+      = f.text_field :desc, :class => "col-md-6"
+    .row
+      = f.label :icon, "图片", :class => "col-md-3"
+      = f.file_field :icon, :class => "col-md-6"
+
+  .actions
+    = f.submit "提交", :class => "btn btn-success", :id => "submit_btn"
+    = link_to "取消", "javascript:close_popup()", :role => "button", :class => "btn btn-default"
+
+

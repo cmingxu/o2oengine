@@ -1,0 +1,25 @@
+.admin_form_head
+  - if @lb_brand.persisted?
+    修改品牌
+  - else
+    新建品牌
+
+= form_for([:admin, @lb_brand], :id => "brand_form", :multipart => true) do |f|
+  .form_body
+    .row
+      = f.label :name, "品牌", :class => "col-md-3"
+      = f.text_field :name, :class => "col-md-6"
+    .row
+      = f.label :water_type, "分类", :class => "col-md-3"
+      = f.select :water_type, options_for_select(Lb::Brand::WATER_TYPE, @lb_brand.water_type), :class => "col-md-6"
+    .row
+      = f.label :name, "描述", :class => "col-md-3"
+      = f.text_field :desc, :class => "col-md-6"
+    .row
+      = f.label :icon, "图片", :class => "col-md-3"
+      = f.file_field :icon, :class => "col-md-6"
+
+  .actions
+    = f.submit "提交", :class => "btn btn-success", :id => "submit_btn"
+    = link_to "取消", "javascript:close_popup()", :role => "button", :class => "btn btn-default"
+
