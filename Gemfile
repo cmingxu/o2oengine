@@ -54,8 +54,6 @@ gem 'chinese_pinyin', :git => "git@github.com:flyerhzm/chinese_pinyin.git"
 gem "haml-rails"
 
 gem 'awesome_print'
-#gem 'rails_kindeditor', '0.4.5'
-
 gem 'carrierwave', '0.10.0'
 
 gem 'settingslogic', '~> 2.0.9'
