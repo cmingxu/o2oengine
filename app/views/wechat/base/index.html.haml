@@ -1,63 +1,53 @@
 .row-fluid.fixed-top.banner
-  爱喝水
+  = image_tag "logo.png", height: 30
 
-.row.icon_bar.icon_bar_first
-  .col-sm-3.col-md-3.text-center
-    .icon.icon_active
-      .icon_upper
-        乐百氏
-      .icon_lower
-        矿泉水
-      .icon_cross
-        X
-  .col-sm-3.col-md-3.text-center
-    .icon
-      .icon_upper
-        乐百氏
-      .icon_lower
-        矿泉水
-      .icon_cross
-        -
-  .col-sm-3.col-md-3.pull-right.text-center
-    .icon
-      = link_to "选择品牌", "", :class => ""
-
+.row.bar.bar-top#product_section
+  = render :partial => "product_section"
 .row.title.text-right
-  最多只选3种， 只做真水
-.row.icon_bar
-  .col-sm-3.col-md-3.text-center
-    .icon
-      .icon_upper
-        乐百氏
-      .icon_lower
-        矿泉水
-      .icon_cross
-        X
-  .col-sm-3.col-md-3.text-center
-    .icon
-      .icon_upper
-        乐百氏
-      .icon_lower
-        矿泉水
-      .icon_cross
-        X
-  .col-sm-3.col-md-3.pull-right.text-center
-    .icon
-      = link_to "选择水券", "", :class => ""
-.row.title.text-right
-  选试喝券，免费上门送水
-
-.row.address_bar
-  电话
   %span
-    13699236168
-  地址
-  %span
-    太月园1号楼1108
+    .head_icon
+    = link_to "不知道喝那种水?", ""
+.row.bar#address_section
+  = render :partial => "address_section"
 .row.title.text-right
-  27分钟极速达，延误就免单
+  %span
+    .head_icon
+    下单后27分钟棒棒达
 
-.row-fluid.fixed-bottom.footer
-  .col-sm-6.col-md-6
-  .col-sm-6.col-md-6.text-center
-    = link_to "送水上门", "", :role => "button", :class => "btn place_order_btn"
+.row.footer#place_order_section
+  = render :partial => "place_order_section"
+
+#overlay
+  #product_overlay_container
+    %ul.list-group.product-list-group
+      - @lb_products.each do |p|
+        %li.list-group-item{"data-product-id" => p.id}
+          .product_icon
+            = image_tag(p.icon.try(:thumb).try(:url) || "http://placehold.it/50x50")
+          .product_name
+            = p.name
+          .product_detail
+            .product_price.text-right
+              %span
+                = p.price
+              元/
+              = p.container_type
+            .product_desc
+              = p.desc
+          .clearfix
+
+  #personal_info_form_container
+    = form_tag 'wechat/change_address', :method => :patch, :remote => true do
+      %ul.list-group.product-list-group
+        %li
+          .input_container
+            = text_field_tag :phone, current_user.phone, :placeholder => "请输入手机号码"
+        %li
+          .input_container
+            = text_field_tag :address, current_user.address, :placeholder => "请输详细地址"
+        %li
+          .notice
+            备注：爱喝水目前仅开通海淀知春路周边配送，其他区域请勿下单
+        %li.text-center
+          = submit_tag "确认"
+

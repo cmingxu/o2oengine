@@ -1,6 +1,6 @@
 default: &default
-  title: "blabla"
-  sitename: "61送水"
+  title: "爱喝水"
+  sitename: "爱喝水"
   amap_key: "2b783687b92d2f0c3ebc2020bdc29689"
 
 

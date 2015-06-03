@@ -1,0 +1,18 @@
+- if current_user.address.present? && current_user.phone.present?
+  %dl
+    %dt 电话 
+    %dd
+      = current_user.phone
+    %br
+    %dt 地址
+    %dd 
+      = current_user.address
+
+  .change_link.text-right
+    %span.popup{"data-overlay" => "personal_info_form_container"} 修改配送地址>
+
+- else
+  .col-sm-3.col-md-3.pull-right.text-center
+    .icon.popup{"data-overlay" => "personal_info_form_container"}
+      .icon_cross
+      %span 送哪儿去

@@ -1,0 +1,238 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require_self
+ */
+
+
+$bg-main-color: #f7f7f7
+$bg-main-white: #fff
+$bg-main-white-border: #d4d4d4
+
+$main-font-color: #6b6b6b
+
+$highlight-color: #2abaf7
+$highlight-orange-color: #ff8900
+$font-size-big: 1.2em
+$font-weight-bold: 700
+
+body
+  background-color: $bg-main-color
+
+html.turbolinks-progress-bar::before 
+  background-color: red !important
+  height: 5px !important
+
+@mixin block_vertical_align()
+  position: relative
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+.loading_indicator
+  background-color: rgba(black, .3)
+  position: fixed
+  top: 0px
+  left: 0px
+  height: 100%
+  width: 100%
+  text-align: center
+  z-index: 20
+
+  i
+    margin-top: 200px
+.banner
+  height: 44px
+  line-height: 44px
+  text-align: center
+  background-color: $highlight-color
+  color: white
+  font-size: $font-size-big
+  font-weight: $font-weight-bold
+
+.fixed-top
+  width: 100%
+  position: fixed
+  top: 0px
+  left: 0px
+
+.footer
+  .col-md-6
+    width: 50%
+    float: left
+  background-color: $bg-main-white
+  border: 1px solid $bg-main-white-border
+  padding: 10px 0px
+  .quantity
+    span
+      display: inline-block
+    .quantity_handler
+      background-color: #78deff
+      width: 22px
+      color: white
+      font-weight: $font-weight-bold
+      cursor: pointer
+    .minus
+      border-top-left-radius: 4px
+      border-bottom-left-radius: 4px
+    .plus
+      border-top-right-radius: 4px
+      border-bottom-right-radius: 4px
+    .quantity_counter
+      width: 22px
+      border: 1px solid #78deff
+
+  .place_order_btn
+    background-color: $highlight-color
+    color: white
+    font-size: $font-size-big
+    font-weight: $font-weight-bold
+
+.bar
+  background-color: $bg-main-white
+  border: 1px solid $bg-main-white-border
+
+.bar-top
+  margin-top: 54px
+
+.col-md-3
+  padding: 0px
+  width: 25%
+  float: left
+.title
+  padding: 10px
+  color: $highlight-orange-color
+  .head_icon
+    background-image: url('<%= asset_path("shui_icon.png") %>')
+    background-size: 12px auto
+    height: 12px
+    width: 12px
+    color: $highlight-orange-color
+    display: inline-block
+  a
+    color: $highlight-orange-color
+    text-decoration: underline
+
+#product_section, #address_section
+  dl
+    margin-bottom: 0px
+    padding: 10px
+    dd, dt
+      display: inline-block
+    dt
+      color: $highlight-color
+    dd
+      padding-left: 10px
+  .change_link
+    padding-right: 10px
+    padding-bottom: 10px
+    span
+      color: $highlight-color
+      cursor: pointer
+
+.icon
+  position: relative
+  border: 2px dashed $highlight-color
+  border-radius: 5px
+  margin: 10px
+  color: $highlight-color
+  padding: 5px
+  min-width: 74px
+  cursor: pointer
+  span 
+    color: $main-font-color
+  .icon_cross
+    margin: 0px auto
+    background-image: url('<%= asset_path("cross.png") %>')
+    background-size: 40px auto
+    height: 40px
+    width: 40px
+
+#overlay
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0px
+  left: 0px
+  background-color: rgba(0,0,0, 0.7)
+  display: none
+
+  #product_overlay_container
+    display: none
+    overflow: scroll
+    width: 90%
+    height: 60%
+    margin: 0px auto
+    border-radius: 4px
+    background-color: white
+    padding: 10px
+    z-index: 3
+    @include block_vertical_align
+    .product-list-group
+      .list-group-item
+        cursor: pointer
+        border: none
+        margin-bottom: 0px
+        border-bottom: 1px solid $bg-main-white-border
+        &:hover
+          box-shadow: 2px 2px 4px grba(black, .7)
+          background-color: lighten(blue, 45%)
+      .product_icon
+        float: left
+      .product_name
+        margin-top: 15px
+        float: left
+        padding-left: 10px
+      .product_detail
+        float: right
+        span
+          color: $highlight-orange-color
+        .product_desc
+          color: $highlight-color
+
+
+
+
+  #personal_info_form_container
+    display: none
+    width: 90%
+    height: 60%
+    margin: 0px auto
+    border-radius: 4px
+    background-color: white
+    padding: 10px
+    padding-top: 40px
+    z-index: 3
+    @include block_vertical_align
+    li
+      margin-top: 10px
+      .notice
+        padding: 10px 0px
+    .input_container
+      border: 1px solid $highlight-color
+      border-radius: 4px
+      padding: 5px
+      width: 100%
+      input[type='text']
+        width: 100%
+        border: none
+        font-size: $font-size-big
+        font-weight: $font-weight-bold
+    input[type='submit']
+      padding: 5px 20px
+      background-color: $highlight-color
+      color: white
+      border: none
+      border-radius: 2px
+      

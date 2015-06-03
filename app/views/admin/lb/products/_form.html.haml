@@ -10,17 +10,17 @@
       = f.label :name, "产品", :class => "col-md-3"
       = f.text_field :name, :class => "col-md-6"
     .row
-      = f.label :brand_id, "品牌", :class => "col-md-3"
-      = f.select :brand_id, options_for_select(Lb::Brand.all.map{|b| [b.name, b.id]}, @lb_product.brand_id), :class => "col-md-6"
+      = f.label :brand, "品牌", :class => "col-md-3"
+      = f.text_field :brand, :class => "col-md-6"
     .row
-      = f.label :coupon_count, "总数（例如14）", :class => "col-md-3"
-      = f.text_field :coupon_count, :class => "col-md-6"
-    .row
-      = f.label :reward_count, "赠数（例如4）", :class => "col-md-3"
-      = f.text_field :reward_count, :class => "col-md-6"
-    .row
-      = f.label :price, "价格（例如100）", :class => "col-md-3"
+      = f.label :price, "价格（例如20）", :class => "col-md-3"
       = f.text_field :price, :class => "col-md-6"
+    .row
+      = f.label :price, "水类型", :class => "col-md-3"
+      = f.select :water_type, options_for_select(Lb::Product::WATER_TYPE, @lb_product.water_type), :class => "col-md-6"
+    .row
+      = f.label :price, "桶类型", :class => "col-md-3"
+      = f.select :container_type, options_for_select(Lb::Product::CONTAINER_TYPE, @lb_product.container_type), :class => "col-md-6"
     .row
       = f.label :desc, "描述", :class => "col-md-3"
       = f.text_field :desc, :class => "col-md-6"

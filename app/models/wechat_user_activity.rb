@@ -4,12 +4,12 @@
 #
 #  id             :integer          not null, primary key
 #  wechat_user_id :integer
+#  openid         :string(255)
 #  activity       :string(255)
 #  sub_activity   :string(255)
-#  params         :text
+#  params         :text(65535)
 #  created_at     :datetime
 #  updated_at     :datetime
-#  openid         :string(255)
 #
 
 class WechatUserActivity < ActiveRecord::Base

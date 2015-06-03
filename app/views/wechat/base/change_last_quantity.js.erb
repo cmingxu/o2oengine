@@ -1,0 +1,5 @@
+$(".loading_indicator").addClass("hide");
+
+$("#place_order_section").html("<%= escape_javascript(render partial: 'place_order_section') %>");
+
+register_place_order_event();

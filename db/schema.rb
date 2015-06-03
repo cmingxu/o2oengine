@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531022711) do
+ActiveRecord::Schema.define(version: 20150602084112) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150531022711) do
     t.string   "name",       limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "code",       limit: 255
     t.string   "icon",       limit: 255
     t.integer  "position",   limit: 4
     t.text     "desc",       limit: 65535
@@ -51,32 +52,8 @@ ActiveRecord::Schema.define(version: 20150531022711) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "lb_brands", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "water_type", limit: 255
-    t.string   "icon",       limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.text     "desc",       limit: 65535
-    t.integer  "position",   limit: 4
-  end
-
-  create_table "lb_coupons", force: :cascade do |t|
-    t.integer  "product_id",     limit: 4
-    t.integer  "count",          limit: 4
-    t.integer  "price",          limit: 4
-    t.integer  "remain_count",   limit: 4
-    t.integer  "user_id",        limit: 4
-    t.string   "coupon_type",    limit: 255
-    t.string   "prepare_id",     limit: 255
-    t.string   "transaction_id", limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "lb_orders", force: :cascade do |t|
     t.integer  "user_id",          limit: 4
-    t.integer  "coupon_id",        limit: 4
     t.string   "product_id",       limit: 255
     t.integer  "quantity",         limit: 4
     t.integer  "staff_id",         limit: 4
@@ -84,30 +61,23 @@ ActiveRecord::Schema.define(version: 20150531022711) do
     t.boolean  "delay",            limit: 1
     t.datetime "deliver_begin_at"
     t.datetime "reached_at"
+    t.integer  "price",            limit: 4
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
 
   create_table "lb_products", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.integer  "brand_id",     limit: 4
-    t.integer  "coupon_count", limit: 4
-    t.integer  "reward_count", limit: 4
-    t.string   "water_type",   limit: 255
-    t.integer  "price",        limit: 4
-    t.text     "desc",         limit: 65535
-    t.string   "icon",         limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "position",     limit: 4
-  end
-
-  create_table "lb_user_brands", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "brand_id",   limit: 4
-    t.boolean  "highlight",  limit: 1
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "name",           limit: 255
+    t.string   "water_type",     limit: 255
+    t.string   "brand",          limit: 255
+    t.string   "container_type", limit: 255
+    t.integer  "sales",          limit: 4
+    t.integer  "price",          limit: 4
+    t.integer  "position",       limit: 4
+    t.text     "desc",           limit: 65535
+    t.string   "icon",           limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "o2o_settings", force: :cascade do |t|
@@ -178,23 +148,63 @@ ActiveRecord::Schema.define(version: 20150531022711) do
     t.datetime "updated_at",                     null: false
   end
 
-  create_table "sub_categories", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+  create_table "user_wechats", force: :cascade do |t|
+    t.integer  "user_id",        limit: 4
+    t.string   "openid",         limit: 255
+    t.string   "nickname",       limit: 255
+    t.string   "sex",            limit: 255
+    t.string   "language",       limit: 255
+    t.string   "province",       limit: 255
+    t.string   "city",           limit: 255
+    t.datetime "subscribe_time"
+    t.string   "unionid",        limit: 255
+    t.string   "headimg",        limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "login",              limit: 255
     t.string   "name",               limit: 255
     t.string   "salt",               limit: 255
+    t.string   "address",            limit: 255
+    t.string   "phone",              limit: 255
     t.string   "encrypted_password", limit: 255
     t.string   "last_login_at",      limit: 255
     t.string   "last_login_ip",      limit: 255
     t.string   "source",             limit: 255
+    t.integer  "last_product_id",    limit: 4
+    t.integer  "last_quantity",      limit: 4
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+  end
+
+  create_table "wechat_user_activities", force: :cascade do |t|
+    t.integer  "wechat_user_id", limit: 4
+    t.string   "openid",         limit: 255
+    t.string   "activity",       limit: 255
+    t.string   "sub_activity",   limit: 255
+    t.text     "params",         limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wechat_users", force: :cascade do |t|
+    t.integer  "user_id",        limit: 4
+    t.string   "status",         limit: 255
+    t.string   "openid",         limit: 255
+    t.string   "nickname",       limit: 255
+    t.integer  "sex",            limit: 4
+    t.string   "language",       limit: 255
+    t.string   "province",       limit: 255
+    t.string   "city",           limit: 255
+    t.string   "country",        limit: 255
+    t.string   "headimg",        limit: 255
+    t.text     "remark",         limit: 65535
+    t.datetime "subscribe_time"
+    t.string   "unionid",        limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

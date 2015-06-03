@@ -47,19 +47,15 @@ Rails.application.routes.draw do
         end
       end
       resources :orders
-      resources :brands do
-        member do
-          patch :move_higher
-          patch :move_lower
-        end
-      end
-      resources :coupons
     end
 
     get 'settings' => 'settings#index'
   end
 
   namespace :wechat do
+    patch 'change_last_quantity' => "base#change_last_quantity"
+    patch 'change_product' => "base#change_product"
+    patch 'change_address' => "base#change_address"
     get "/" => "base#index"
   end
 

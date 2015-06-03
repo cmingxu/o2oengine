@@ -4,7 +4,6 @@
 #
 #  id               :integer          not null, primary key
 #  user_id          :integer
-#  coupon_id        :integer
 #  product_id       :string(255)
 #  quantity         :integer
 #  staff_id         :integer
@@ -12,6 +11,7 @@
 #  delay            :boolean
 #  deliver_begin_at :datetime
 #  reached_at       :datetime
+#  price            :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

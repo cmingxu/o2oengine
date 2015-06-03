@@ -33,6 +33,21 @@ class Admin::Lb::ProductsController < Admin::BaseController
     end
   end
 
+  def destroy
+    @lb_product.destroy
+    redirect_to admin_lb_products_path
+  end
+
+  def move_higher
+    @lb_product.move_higher
+    redirect_to admin_lb_products_path
+  end
+
+  def move_lower
+    @lb_product.move_lower
+    redirect_to admin_lb_products_path
+  end
+
   private
   def find_product
     @lb_product = ::Lb::Product.find params[:id]
@@ -40,6 +55,6 @@ class Admin::Lb::ProductsController < Admin::BaseController
   end
 
   def lb_product_param
-    params.require(:lb_product).permit(:name, :icon, :brand_id, :desc, :price, :coupon_count, :reward_count)
+    params.require(:lb_product).permit(:name, :icon, :brand, :desc, :price, :water_type, :container_type)
   end
 end

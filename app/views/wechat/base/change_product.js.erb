@@ -1,0 +1,7 @@
+$(".loading_indicator").addClass("hide");
+$("#product_overlay_container").hide();
+$("#overlay").fadeOut('fast');
+
+$("#product_section").html("<%= escape_javascript(render partial: 'product_section') %>");
+
+register_popup_event();

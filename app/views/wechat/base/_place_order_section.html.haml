@@ -1,0 +1,17 @@
+.col-sm-6.col-md-6
+  .quantity{:class => current_user.can_place_order? ? "" : "disabled"}
+    %span.quantity_handler.minus.text-center{"data-change" => "-1"}
+      \-
+    %span.quantity_counter.text-center
+      = current_user.last_quantity
+    %span.quantity_handler.plus.text-center{"data-change" => "1"}
+      +
+    %span 桶
+  .price
+    应付额：
+    %span
+      = current_user.calculated_price
+    元
+
+.col-sm-6.col-md-6.text-right
+  = link_to "我要订水", "", :role => "button", :class => "btn place_order_btn #{ current_user.can_place_order? ? '' : 'disabled'}"

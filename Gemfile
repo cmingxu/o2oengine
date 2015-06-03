@@ -90,4 +90,4 @@ gem 'rqrcode_png'
 
 gem "wechat-rails", git:"https://github.com/cmingxu/wechat-rails"
 gem "omniauth-wechat-oauth2"
-
+gem 'wx_pay'

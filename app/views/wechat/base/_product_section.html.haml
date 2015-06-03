@@ -1,0 +1,17 @@
+- if product = current_user.last_product
+  %dl
+    %dt 品牌
+    %dd
+      = product.name
+    %br
+    %dt 价格 
+    %dd
+      = "#{product.price}元/#{product.container_type}"
+  .change_link.text-right
+    %span.popup{"data-overlay" => "product_overlay_container"} 换其他水喝>
+
+- else
+  .col-sm-3.col-md-3.pull-right.text-center
+    .icon.popup.text-center{"data-overlay" => "product_overlay_container"}
+      .icon_cross
+      %span 喝什么水

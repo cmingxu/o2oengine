@@ -1,0 +1,7 @@
+$(".loading_indicator").addClass("hide");
+$("#personal_info_form_container").hide();
+$("#overlay").fadeOut('fast');
+
+$("#address_section").html("<%= escape_javascript(render partial: 'address_section') %>");
+
+register_popup_event();
