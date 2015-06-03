@@ -6,7 +6,7 @@ APP_HOME=/home/ubuntu/o2oengine/current
  
 case "$1" in
   start)
-  $UNICORN -c $CONFIG_FILE -E production -D
+  bundle exec $UNICORN -c $CONFIG_FILE -E production -D
   ;;
   stop)
   kill -QUIT `cat /tmp/unicorn_o2oengine.pid`
