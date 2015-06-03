@@ -3,10 +3,11 @@
 UNICORN=/home/ubuntu/.rvm/bin/bootup_unicorn
 CONFIG_FILE=/home/ubuntu/o2oengine/current/config/unicorn.rb
 APP_HOME=/home/ubuntu/o2oengine/current
+BUNDLE=/home/ubuntu/.rvm/gems/ruby-2.1.5@global/bin/bundle
  
 case "$1" in
   start)
-  bundle exec $UNICORN -c $CONFIG_FILE -E production -D
+  $BUNDLE exec $UNICORN -c $CONFIG_FILE -E production -D
   ;;
   stop)
   kill -QUIT `cat /tmp/unicorn_o2oengine.pid`
