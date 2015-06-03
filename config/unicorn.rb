@@ -12,7 +12,7 @@ worker_processes 2
 working_directory root_path
 timeout 30
 # 侦听
-listen 8084, tcp_nopush: false
+listen 8088, tcp_nopush: false
 listen socket_file, backlog: 1024
 pid pid_file
 stderr_path err_log
