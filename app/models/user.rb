@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
   end
 
   def calculated_price
+    return 0 if self.last_product.nil?
     if should_give_for_free?
       (self.last_quantity - 1) * self.last_product.price + 0.01
     else
