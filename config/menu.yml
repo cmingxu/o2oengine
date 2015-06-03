@@ -1,0 +1,9 @@
+button:
+  -
+    type: "view"
+    name: "我要订水"
+    url: "http://shui520.com/wechat"
+  -
+    type: "view"
+    name: "奖励"
+    url: "http://shui520.com/orders"

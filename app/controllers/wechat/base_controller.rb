@@ -20,7 +20,7 @@ class Wechat::BaseController < ApplicationController
   end
 
   def login_required
-    if true#!Rails.env.production?
+    if !Rails.env.production?
       session[:user_id] = User.first.id
       return true
     end

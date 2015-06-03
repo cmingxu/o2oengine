@@ -2,13 +2,8 @@ default: &default
   appid: "wx97b3f3548f2c5c76"
   secret: "d56a540fe90eb8848f440e8ed8b18aa0"
   token:  "thisistoken"
-  access_token: "/home/ubuntu/wechat_access_token"
-  js_api_ticket: "/home/ubuntu/wechat_js_api_ticket"
-  vendor_appid: "wxa54c754042737ab9"
-  vendor_secret: "20a993eb419d0306c403fc184a391af1"
-  vendor_token:  "thisistoken"
-  vendor_access_token: "/home/ubuntu/vendor_wechat_access_token"
-  vendor_js_api_ticket: "/home/ubuntu/vendor_wechat_js_api_ticket"
+  access_token: "/home/ubuntu/wechat_access_token_shui520"
+  js_api_ticket: "/home/ubuntu/wechat_js_api_ticket_shui520"
 
 production:
   <<: *default
@@ -22,10 +17,9 @@ staging:
 
 development:
   <<: *default
-  access_token: "/Users/cmingxu/wechat_access_token"
-  vendor_access_token: "/Users/cmingxu/vendor_wechat_access_token"
-  js_api_ticket: "/Users/cmingxu/wechat_js_api_ticket"
-  vendor_js_api_ticket: "/Users/cmingxu/vendor_wechat_js_api_ticket"
+  access_token: "/Users/cmingxu/wechat_access_token_shui"
+  vendor_access_token: "/Users/cmingxu/vendor_wechat_access_token_shui"
+  js_api_ticket: "/Users/cmingxu/wechat_js_api_ticket_shui"
 
 test:
   <<: *default
