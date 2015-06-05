@@ -26,7 +26,7 @@ class Wechat::BaseController < ApplicationController
     end
 
     if current_user.nil?
-      redirect_to "/auth/wechat_user" and return
+      redirect_to "/auth/wechat" and return
       return false
     end
   end
