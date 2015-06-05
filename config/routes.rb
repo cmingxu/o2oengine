@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   
   
   namespace :api do
-    resources :wechat, :only => [:show, :index]
+    resource :wechat, controller: :wechat, only: [:show, :create]
   end
 
   namespace :wechat do
