@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   validates :phone, format: { with: /\A(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}\z/ }, :allow_blank => true
 
   has_many :lb_orders, :class_name => "Lb::Order"
-  has_many :user_wechat
+  has_one :user_wechat
   before_create :set_default
 
   def set_default
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     user = User.find_or_initialize_by(:openid => auth_callback[:uid])
     info = auth_callback[:info]
     if (user_wechat = user.user_wechat).blank?
-      user_wechat = UserWechat.create :user => self
+      user_wechat = UserWechat.new :user => user
     end
 
     user_wechat.role = user_type

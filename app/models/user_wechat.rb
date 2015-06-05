@@ -21,5 +21,4 @@ class UserWechat < ActiveRecord::Base
   belongs_to :user
   
   mount_uploader :headimg, WechatUserHeaderImgUploader
-
 end
