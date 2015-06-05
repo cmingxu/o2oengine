@@ -1,6 +1,6 @@
 default: &default
-  appid: "wx97b3f3548f2c5c76"
-  secret: "d56a540fe90eb8848f440e8ed8b18aa0"
+  appid: "wx71753a63a0e5c2ec"
+  secret: "077ae3a0a4e88b911c85d1c365908d47"
   token:  "thisistoken"
   access_token: "/home/ubuntu/wechat_access_token_shui520"
   js_api_ticket: "/home/ubuntu/wechat_js_api_ticket_shui520"
