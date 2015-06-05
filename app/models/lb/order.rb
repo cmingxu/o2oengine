@@ -31,7 +31,6 @@ class Lb::Order < ActiveRecord::Base
 
   before_create do
     self.order_num = "%06d" % self.class.count
-    ap self.order_num
     self.status = 'not_paid'
   end
 
