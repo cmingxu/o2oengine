@@ -42,8 +42,7 @@ class User < ActiveRecord::Base
       user_wechat = UserWechat.new :user => user
     end
 
-    user_wechat.role = user_type
-    user_wechat.source = :wechat
+    user.source = :wechat
     user_wechat.nickname = info[:nickname]
     user_wechat.language = info[:language]
     user_wechat.province = info[:province]
