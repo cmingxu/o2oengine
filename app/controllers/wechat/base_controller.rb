@@ -4,6 +4,10 @@ class Wechat::BaseController < ApplicationController
   before_filter :login_required, :except => [:login_from_wechat]
   helper_method :current_user
 
+  before_filter  :only => [:index] do
+    set_wechat_js_config $wechat_api
+  end
+
   def current_user
     User.find_by_id session[:user_id]
   end
