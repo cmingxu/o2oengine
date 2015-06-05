@@ -82,6 +82,7 @@ class Wechat::BaseController < ApplicationController
       o.body = "#{o.lb_product.name}X#{o.quantity}"
     end
     @r = WxPay::Service.invoke_unifiedorder(@order.prepay_params)
+    Rails.logger.debug @r
     if @r.success?
       @order.update_column :prepay_id, @r['prepay_id']
       @pay_config[:package] = "prepay_id=#{@r['prepay_id']}"

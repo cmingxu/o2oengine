@@ -1,10 +1,10 @@
 $(".loading_indicator").addClass('hide');
 
-var package = '#{@pay_config[:package]}';
-var timeStamp = '#{@pay_config[:timeStamp]}';
-var nonceStr = '#{@pay_config[:nonceStr]}';
-var signType = '#{@pay_config[:signType]}';
-var paySign = '#{@pay_config[:paySign]}';
+var package = '<%= @pay_config[:package] %>';
+var timeStamp = '<%= @pay_config[:timeStamp] %>';
+var nonceStr = '<%= @pay_config[:nonceStr] %>';
+var signType = '<%= @pay_config[:signType] %>';
+var paySign = '<%= @pay_config[:paySign] %>';
 
 wx.chooseWXPay({
   timestamp: timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
@@ -18,4 +18,3 @@ wx.chooseWXPay({
     }, 2000);
   }
 });
-
