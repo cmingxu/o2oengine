@@ -31,11 +31,24 @@ class Lb::Order < ActiveRecord::Base
 
   before_create do
     self.order_num = "%-06d" % self.class.count
+    self.status = 'not_paid'
+  end
+
+  scope :paid_or_closed, -> { where("status NOT IN ('paid', 'closed')") }
+
+  state_machine :status do
+    event :pay do
+      transition :from => :not_paid, :to => :paid
+    end
+
+    event :close do
+      transition :from => [:paid], :to => :closed
+    end
   end
 
   def prepay_params
     {
-      body: "#{self.lb_product.name}X#{self.quantity}",
+      body: self.body,
       out_trade_no: self.order_num,
       total_fee: self.price , # after calculation when created
       spbill_create_ip: self.spbill_create_ip,
@@ -45,14 +58,5 @@ class Lb::Order < ActiveRecord::Base
     }
   end
 
-   state_machine :status, :initial => :not_paid do
-    event :pay do
-      transition :from => :not_paid, :to => :paid
-    end
-
-    event :close do
-      transition :from => [:paid], :to => :closed
-    end
-  end
 
 end

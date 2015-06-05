@@ -73,10 +73,13 @@ class Wechat::BaseController < ApplicationController
     }
 
     @order = Lb::Order.create do |o|
+      o.product_id = current_user.last_product_id
       o.spbill_create_ip = request.headers["X-Real-IP"]
       o.quantity = current_user.last_quantity
       o.price = current_user.calculated_price * 100
       o.notify_url = "http://shui520.com/wechat/notify"
+      o.user = current_user
+      o.body = "#{o.lb_product.name}X#{o.quantity}"
     end
     @r = WxPay::Service.invoke_unifiedorder(@order.prepay_params)
     if @r.success?

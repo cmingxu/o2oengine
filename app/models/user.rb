@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
   end
 
   def should_give_for_free?
-    self.lb_orders.blank? # first order
+    self.lb_orders.paid_or_closed.blank? # first order
   end
 
   def password_valid?(pass)

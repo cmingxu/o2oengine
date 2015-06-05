@@ -45,7 +45,7 @@ function register_place_order_event() {
   });
 
   $("#place_order_btn").click(function () {
-    if($(this).hasClass("disabled")){
+    if(!$(this).hasClass("disabled")){
       $(".loading_indicator").removeClass('hide');
 
       $.ajax({
