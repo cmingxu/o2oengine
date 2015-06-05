@@ -5,5 +5,5 @@ button:
     url: "http://shui520.com/wechat"
   -
     type: "view"
-    name: "奖励"
+    name: "配送状态"
     url: "http://shui520.com/orders"

@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 
   get 'auth/wechat/callback' => "wechat/base#login_from_wechat"
   get 'auth/wechat/failure' => "wechat/base#failure"
+  get 'auth/failure' => "wechat/base#failure"
 
   namespace :wechat do
     patch 'change_last_quantity' => "base#change_last_quantity"
