@@ -54,6 +54,9 @@ Rails.application.routes.draw do
 
   
   
+  namespace :api do
+    resources :wechat, :only => [:show, :index]
+  end
 
   namespace :wechat do
     get 'callback', to: 'base#login_from_wechat'
@@ -62,6 +65,7 @@ Rails.application.routes.draw do
     patch 'change_product' => "base#change_product"
     patch 'change_address' => "base#change_address"
     get "/" => "base#index"
+    get 'order_confirm' => "base#order_confirm"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

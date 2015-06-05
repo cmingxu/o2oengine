@@ -63,4 +63,7 @@ class Wechat::BaseController < ApplicationController
     current_user.update_column :last_quantity, last_quantity
     current_user.reload
   end
+
+  def order_confirm
+  end
 end
