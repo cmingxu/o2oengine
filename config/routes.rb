@@ -58,9 +58,10 @@ Rails.application.routes.draw do
     resource :wechat, controller: :wechat, only: [:show, :create]
   end
 
+  get 'auth/wechat/callback' => "wechat/base#login_from_wechat"
+  get 'auth/wechat/failure' => "wechat/base#failure"
+
   namespace :wechat do
-    get 'callback', to: 'base#login_from_wechat'
-    get 'failure',  to: 'base#failure'
     patch 'change_last_quantity' => "base#change_last_quantity"
     patch 'change_product' => "base#change_product"
     patch 'change_address' => "base#change_address"

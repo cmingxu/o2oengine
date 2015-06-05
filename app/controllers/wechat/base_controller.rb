@@ -66,4 +66,9 @@ class Wechat::BaseController < ApplicationController
 
   def order_confirm
   end
+
+  def failure
+    Rails.logger.error params[:message]
+    head 404
+  end
 end
