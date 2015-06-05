@@ -34,7 +34,7 @@ class Wechat::BaseController < ApplicationController
   def notify
     result = Hash.from_xml(request.body.read)["xml"]
     if result['result_code'] == result['return_code'] && result['return_code'] == 'SUCCESS'#WxPay::Sign.verify?(result)
-      @order = Order.find_by_order_num(result["order_num"])
+      @order = Lb::Order.find_by_order_num(result["order_num"])
       @order.transaction_id = result['transaction_id']
       @order.bank_type      = result['bank_type']
       @order.paid_at        = Time.now

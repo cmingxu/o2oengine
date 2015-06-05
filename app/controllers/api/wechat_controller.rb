@@ -6,14 +6,14 @@ class Api::WechatController < Api::BaseController
     WechatUser.user_subscribe!(request)
     WechatUserActivity.log_activity!(request, "event", "subscribe")
     WECHAT_LOGGER.info "event subscribe #{request.message_hash}"
-    request.reply.text LbSetting.wechat_subscribe_message
+    request.reply.text "您好， 欢迎关注aiheshui520!" 
   end
 
   on :event, with: "unsubscribe" do |request, event|
     WechatUser.user_unsubscribe!(request)
     WechatUserActivity.log_activity!(request, "event", "unsubscribe")
     WECHAT_LOGGER.info "event unsubscribe #{request.message_hash}"
-    request.reply.text LbSetting.wechat_unsubscribe_message
+    request.reply.text "您好， 欢迎关注aiheshui520!" 
   end
 
   on :event, with: "Location" do |request, event|
@@ -25,20 +25,21 @@ class Api::WechatController < Api::BaseController
   on :event, with: "view" do |request, event|
     WechatUserActivity.log_activity!(request, "event", "view")
     WECHAT_LOGGER.info "event view #{request[:EventKey]} #{request.message_hash}"
+    request.reply.text "您好， 欢迎关注aiheshui520!" 
     #request.reply.text LbSetting.wechat_subscribe_message
   end
 
   on :event, with: "click" do |request, event|
     WechatUserActivity.log_activity!(request, "event", "click")
     WECHAT_LOGGER.info "event click #{request[:EventKey]} #{request.message_hash}"
-    #request.reply.text LbSetting.wechat_subscribe_message
+    request.reply.text "您好， 欢迎关注aiheshui520!" 
   end
 
 
   # 默认的文字信息responder
   on :text do |request, content|
     #request.reply.text "echo: #{content}" #Just echo
-    request.reply.text LbSetting.wechat_subscribe_message
+    request.reply.text ""
   end
 
   # 当请求的文字信息内容为'help'时, 使用这个responder处理
@@ -47,30 +48,11 @@ class Api::WechatController < Api::BaseController
     request.reply.text LbSetting.wechat_subscribe_message
   end
 
-  # 当请求的文字信息内容为'help'时, 使用这个responder处理
-  on :text, with:"abc" do |request, help|
-    #request.reply.text "help content" #回复帮助信息
-    request.reply.text "<a href='http://m.6luobo.com/mobile/map?name=#{help}'>#{help}</a>"
-  end
-
   # 当请求的文字信息内容为'<n>条新闻'时, 使用这个responder处理, 并将n作为第二个参数
   on :text, with: /^(\d+)条新闻$/ do |request, count|
     articles_range = (0... [count.to_i, 10].min)
     request.reply.news(articles_range) do |article, i| #回复"articles"
       article.item title: "标题#{i}", description:"内容描述#{i}", pic_url: "http://www.baidu.com/img/bdlogo.gif", url:"http://www.baidu.com/"
-    end
-  end
-
-  on :text, with: /([\p{Han}|\w]+)/u do |request, r|
-    parks = Park.where(["name like ? OR code like ? OR pinyin like ?", "%#{r}%",
-                "#{r}%", "#{r.scan(/\w/).map{|w| w + "%"}.join('')}" ]).limit(6)
-
-    if parks.present?
-      request.reply.text(parks.map do |help|
-        "<a href='http://6luobo.com/mobile/map?name=#{help.name}'>#{help.name}</a>"
-      end.join("\n"))
-    else
-      request.reply.text "萝卜没能找到您需要的停车场， 试着如“海淀剧院”，“haidianjuyuan”或者“hdjy”。"
     end
   end
 
