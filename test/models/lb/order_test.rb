@@ -12,6 +12,14 @@
 #  deliver_begin_at :datetime
 #  reached_at       :datetime
 #  price            :integer
+#  order_num        :string(255)
+#  prepay_id        :string(255)
+#  paid_at          :datetime
+#  body             :string(255)
+#  transaction_id   :string(255)
+#  spbill_create_ip :string(255)
+#  notify_url       :string(255)
+#  bank_type        :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

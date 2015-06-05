@@ -43,6 +43,17 @@ function register_place_order_event() {
       data: {change: $(this).data('change')}
     })
   });
+
+  $("#place_order_btn").click(function () {
+    if($(this).hasClass("disabled")){
+      $(".loading_indicator").removeClass('hide');
+
+      $.ajax({
+        url: "wechat/place_order",
+        method: 'POST'
+      })
+    }
+  });
 }
 
 $(document).ready(function(){

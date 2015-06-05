@@ -7,6 +7,8 @@
     %title= @title || Setting.title || Setting.sitenme
     = stylesheet_link_tag    'wechat', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'wechat', 'data-turbolinks-track' => true
+    = javascript_include_tag "http://res.wx.qq.com/open/js/jweixin-1.0.0.js" 
+    
 
     = csrf_meta_tags
   %body

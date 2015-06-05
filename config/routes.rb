@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     patch 'change_address' => "base#change_address"
     get "/" => "base#index"
     get 'order_confirm' => "base#order_confirm"
+    post 'place_order' => "base#place_order"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

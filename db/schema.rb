@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602084112) do
+ActiveRecord::Schema.define(version: 20150605033709) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 20150602084112) do
     t.datetime "deliver_begin_at"
     t.datetime "reached_at"
     t.integer  "price",            limit: 4
+    t.string   "order_num",        limit: 255
+    t.string   "prepay_id",        limit: 255
+    t.datetime "paid_at"
+    t.string   "body",             limit: 255
+    t.string   "transaction_id",   limit: 255
+    t.string   "spbill_create_ip", limit: 255
+    t.string   "notify_url",       limit: 255
+    t.string   "bank_type",        limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
@@ -177,6 +185,7 @@ ActiveRecord::Schema.define(version: 20150602084112) do
     t.integer  "last_quantity",      limit: 4
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "openid",             limit: 255
   end
 
   create_table "wechat_user_activities", force: :cascade do |t|

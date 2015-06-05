@@ -6,7 +6,7 @@
           %li.list-group-item
             .xcm_item_name_and_desc
               .xcm_item_name
-                = u.user_wechat.nickname
+                = u.user_wechat.try(:nickname)
               .xcm_item_desc
                 = u.last_login_at
 

@@ -16,6 +16,7 @@
 #  last_quantity      :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  openid             :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -25,7 +26,8 @@ class User < ActiveRecord::Base
     :ios    => "iOS",
     :android => "Android"
   }
-  validates :phone, format: { with: /\A(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}\z/ }, :allow_blank => true
+
+  #validates :phone, format: { with: /\A(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}\z/ }, :allow_nil => true
 
   has_many :lb_orders, :class_name => "Lb::Order"
   has_one :user_wechat

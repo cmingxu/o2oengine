@@ -10,6 +10,14 @@ class CreateLbOrders < ActiveRecord::Migration
       t.datetime :deliver_begin_at
       t.datetime :reached_at
       t.integer :price
+      t.string :order_num
+      t.string :prepay_id
+      t.datetime :paid_at
+      t.string :body
+      t.string :transaction_id
+      t.string :spbill_create_ip
+      t.string :notify_url
+      t.string :bank_type
 
       t.timestamps null: false
     end

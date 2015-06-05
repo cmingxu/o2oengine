@@ -16,6 +16,7 @@
 #  last_quantity      :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  openid             :string(255)
 #
 
 require 'test_helper'

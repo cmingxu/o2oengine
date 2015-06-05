@@ -64,6 +64,28 @@ class Wechat::BaseController < ApplicationController
     current_user.reload
   end
 
+  def place_order
+    @pay_config = {
+      :signType => "MD5",
+      :timeStamp => Time.now.to_i,
+      :appId => Wechat.config.appid,
+      :nonceStr  => SecureRandom.hex(10)
+    }
+
+    @order = Lb::Order.create do |o|
+      o.spbill_create_ip = request.headers["X-Real-IP"]
+      o.quantity = current_user.last_quantity
+      o.price = current_user.calculated_price * 100
+      o.notify_url = "http://shui520.com/wechat/notify"
+    end
+    @r = WxPay::Service.invoke_unifiedorder(@order.prepay_params)
+    if @r.success?
+      @order.update_column :prepay_id, @r['prepay_id']
+      @pay_config[:package] = "prepay_id=#{@r['prepay_id']}"
+      @pay_config[:paySign] = WxPay::Sign.generate(@pay_config)
+    end
+  end
+
   def order_confirm
   end
 
