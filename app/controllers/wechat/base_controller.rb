@@ -4,6 +4,9 @@ class Wechat::BaseController < ApplicationController
   before_filter :login_required, :except => [:login_from_wechat, :notify]
   helper_method :current_user
 
+ skip_before_filter :verify_authenticity_token, :only => :notify
+  
+
   before_filter  :only => [:index] do
     set_wechat_js_config $wechat_api
   end
