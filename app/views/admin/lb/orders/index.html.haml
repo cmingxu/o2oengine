@@ -8,7 +8,8 @@
         - @orders.each do |b|
           %li.list-group-item
             .xcm_item_icon
-              = image_tag b.lb_product.icon.mini.url || "http://placehold.it/50x50"
+              = b.order_num
+              = b.status
             .xcm_item_name_and_desc
               .xcm_item_name
                 = b.lb_product.name
