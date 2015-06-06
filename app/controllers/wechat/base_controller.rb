@@ -85,7 +85,8 @@ class Wechat::BaseController < ApplicationController
       o.spbill_create_ip = request.headers["X-Real-IP"]
       o.quantity = current_user.last_quantity
       o.price = current_user.calculated_price * 100
-      o.notify_url = "http://shui.6luobo.com/wechat/notify"
+      Rails.logger.debug o.order_num
+      o.notify_url = "http://shui.6luobo.com/wechat/notify?order_num=#{o.order_num}"
       o.user = current_user
       o.body = "#{o.lb_product.name}X#{o.quantity}"
     end
