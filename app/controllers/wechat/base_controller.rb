@@ -1,7 +1,7 @@
 class Wechat::BaseController < ApplicationController
   layout "wechat"
 
-  before_filter :login_required, :except => [:login_from_wechat]
+  before_filter :login_required, :except => [:login_from_wechat, :notify]
   helper_method :current_user
 
   before_filter  :only => [:index] do
