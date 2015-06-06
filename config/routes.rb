@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "carts" => "cart#index"
   patch "check_out" => "cart#check_out"
 
-  resources :products, :only => [:index, :show]
+  #resources :products, :only => [:index, :show]
 
   namespace :dashboard do
     get '/' => "base#index"

@@ -4,10 +4,19 @@ class Admin::Lb::ProductsController < Admin::BaseController
 
   def index
     @products = ::Lb::Product.page params[:page]
+
+    respond_to do |format|
+      format.html 
+
+      format.json do
+        render :json => @products
+      end
+      
+    end
   end
 
   def new
-    @lb_product = ::Lb::Product.new 
+    @lb_product = ::Lb::Product.new
     render layout: false
   end
 
