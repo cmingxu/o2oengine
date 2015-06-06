@@ -14,6 +14,9 @@ $(document).ready(function () {
     signType: signType,
     paySign: paySign,
     success: function (res) {
+      setTimeout(function () {
+        window.location.href = "/wechat/order_confirm'
+      }, 2000);
     }
   });
 });
