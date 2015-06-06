@@ -81,11 +81,12 @@ class Wechat::BaseController < ApplicationController
     }
 
     @order = Lb::Order.create do |o|
+      o.order_num = "%06d" % Lb::Order.count
+      o.status = 'not_paid'
       o.product_id = current_user.last_product_id
       o.spbill_create_ip = request.headers["X-Real-IP"]
       o.quantity = current_user.last_quantity
       o.price = current_user.calculated_price * 100
-      Rails.logger.debug o.order_num
       o.notify_url = "http://shui.6luobo.com/wechat/notify?order_num=#{o.order_num}"
       o.user = current_user
       o.body = "#{o.lb_product.name}X#{o.quantity}"
