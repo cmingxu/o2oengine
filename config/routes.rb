@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     get "/" => "base#index"
     get 'order_confirm' => "base#order_confirm"
     post 'place_order' => "base#place_order"
+    get 'orders' => "base#orders"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

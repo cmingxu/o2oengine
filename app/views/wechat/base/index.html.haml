@@ -1,3 +1,10 @@
+:javascript
+  var wechat = {
+    timestamp: '#{@config[:timestamp]}',
+    nonceStr: '#{@config[:noncestr]}',
+    signature: '#{@config[:signature]}'
+  };
+
 .row-fluid.fixed-top.banner
   = image_tag "logo.png", height: 30
 

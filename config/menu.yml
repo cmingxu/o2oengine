@@ -2,8 +2,8 @@ button:
   -
     type: "view"
     name: "我要订水"
-    url: "http://shui520.com/wechat"
+    url: "http://shui.6luobo.com/wechat"
   -
     type: "view"
     name: "配送状态"
-    url: "http://shui520.com/orders"
+    url: "http://shui.6luobo.com/wechat/orders"
