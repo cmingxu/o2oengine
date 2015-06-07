@@ -34,9 +34,11 @@ class Lb::Order < ActiveRecord::Base
     self.status = 'not_paid'
   end
 
-  scope :paid_or_closed, -> { where("status NOT IN ('paid', 'closed')") }
+  scope :paid_or_delivered_or_closed, -> { where("status NOT IN ('paid', 'closed', 'delivered')") }
 
   state_machine :status do
+    after_transition :on => :pay, :do => :set_time_click
+
     event :pay do
       transition :from => :not_paid, :to => :paid
     end
@@ -48,6 +50,10 @@ class Lb::Order < ActiveRecord::Base
     event :closed do
       transition :from => [:delivered], :to => :closed
     end
+  end
+
+  def set_time_click
+    Resque.enqueue_at 27.minute.from_now, TimeoutCalculated, self.id
   end
 
   def prepay_params

@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
   end
 
   def should_give_for_free?
-    self.lb_orders.paid_or_closed.blank? # first order
+    self.lb_orders.paid_or_delivered_or_closed.blank? # first order
   end
 
   def password_valid?(pass)
@@ -93,5 +93,9 @@ class User < ActiveRecord::Base
 
   def self.encrypted_password(pass, salt)
     Digest::SHA1.hexdigest(pass + "-" + salt)
+  end
+
+  def set_next_time_free
+    self.update_column :next_time_free, true
   end
 end

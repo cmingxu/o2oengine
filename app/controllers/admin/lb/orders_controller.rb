@@ -15,6 +15,7 @@ class Admin::Lb::OrdersController < Admin::BaseController
   def update
     @order = ::Lb::Order.find params[:id]
     @order.update_attributes order_params
+    @order.deliver_begin_at = Time.now
     @order.save
     @order.deliver!
 
@@ -23,6 +24,7 @@ class Admin::Lb::OrdersController < Admin::BaseController
 
   def done_deliver
     @order = ::Lb::Order.find params[:id]
+    @order.update_column :reached_at, Time.now
     @order.close!
 
     redirect_to :back
