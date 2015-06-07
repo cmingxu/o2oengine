@@ -29,4 +29,12 @@ class Staff < ActiveRecord::Base
   def self.encrypted_password(pass, salt)
     Digest::SHA1.hexdigest(pass + "-" + salt)
   end
+
+  def self.login(login, pass)
+    u = Staff.find_by_login(login)
+    return nil if u.nil?
+
+    u.password_valid?(pass) ? u : nil
+  end
+
 end

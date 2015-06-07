@@ -1,8 +1,10 @@
 .orders.index_page
   .container
     .row.xcm_index_header
-      %a{:role => "button", :class => "btn btn-success pull-right ", :href => admin_lb_orders_path }
-        = fa_icon("fw refresh")
+      %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path } 全部 
+      %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :paid) } 已付
+      %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :not_paid) } 未付
+      %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :delivered) } 已送
     .row
       %ul.list-group.xcm-list-group
         - @orders.each do |b|
@@ -23,9 +25,12 @@
                 = b.user.address
 
             .xcm_actions.pull-right
-              %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_lb_order_path(b) }= "修改品牌"
+              - if b.paid?
+                %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_lb_order_path(b) }= "派单"
+              - if b.delivered?
+                %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => done_deliver_admin_lb_order_path(b) }= "派单完成"
 
             .clearfix
 
-
+    = paginate @orders
 

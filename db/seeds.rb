@@ -23,3 +23,7 @@ Lb::Product.create :name => "景田大桶矿泉水", :price => 20, :water_type =
 Lb::Product.create :name => "怡宝大桶矿泉水", :price => 20, :water_type => "矿泉水",
   :brand => "怡宝", :container_type => "大桶", :desc => "怡宝大桶矿泉水"
 
+
+%w(luoboyun@qq.com luobotou@qq.com).each do |a|
+  Staff.create :name => a, :password => a, :login => a
+end

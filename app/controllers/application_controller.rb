@@ -19,5 +19,16 @@ class ApplicationController < ActionController::Base
     @config[:signature] = Digest::SHA1.hexdigest(@config.keys.sort.map{|k| "#{k}=#{@config[k]}" }.join("&"))
   end
 
+  def login_required
+    if !current_staff
+      redirect_to login_path
+      return false
+    end
+  end
+
+  def current_staff
+    Staff.find_by_id session[:staff_id]
+  end
+
 
 end

@@ -41,8 +41,12 @@ class Lb::Order < ActiveRecord::Base
       transition :from => :not_paid, :to => :paid
     end
 
-    event :close do
-      transition :from => [:paid], :to => :closed
+    event :deliver do
+      transition :from => :paid, :to => :delivered
+    end
+
+    event :closed do
+      transition :from => [:delivered], :to => :closed
     end
   end
 

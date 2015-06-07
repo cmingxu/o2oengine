@@ -1,0 +1,12 @@
+
+= form_for([:admin, @order], :id => "order_form") do |f|
+  .form_body
+    .row
+      = f.label :statff_id, "送水哥", :class => "col-md-3"
+      = f.select :staff_id, options_for_select(Staff.all.map {|a| [a.name, a.id]}, @order.staff_id), :class => "col-md-6"
+
+  .actions
+    = f.submit "提交", :class => "btn btn-success", :id => "submit_btn"
+    = link_to "取消", "javascript:close_popup()", :role => "button", :class => "btn btn-default"
+
+

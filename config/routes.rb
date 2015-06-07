@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "carts" => "cart#index"
   patch "check_out" => "cart#check_out"
 
+  get 'login' => "session#login"
+  post 'login' => "session#login"
+
   #resources :products, :only => [:index, :show]
 
   namespace :dashboard do
@@ -46,7 +49,11 @@ Rails.application.routes.draw do
           patch :move_higher
         end
       end
-      resources :orders
+      resources :orders do
+        member do
+          patch :done_deliver
+        end
+      end
     end
 
     get 'settings' => 'settings#index'

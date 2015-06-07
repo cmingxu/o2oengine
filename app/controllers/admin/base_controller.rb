@@ -1,6 +1,7 @@
 class Admin::BaseController < ApplicationController
   layout "admin"
   skip_before_filter :load_cart
+  before_filter :login_required
 
   CONTROLLER_NAME_MAP = {
     :product => "商品",
