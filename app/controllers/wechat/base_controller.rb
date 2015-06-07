@@ -90,6 +90,7 @@ class Wechat::BaseController < ApplicationController
       o.notify_url = "http://shui.6luobo.com/wechat/notify?order_num=#{o.order_num}"
       o.user = current_user
       o.body = "#{o.lb_product.name}X#{o.quantity}"
+      o.give_for_free = (o.price % 100) == 1
     end
     Rails.logger.debug @order.prepay_params
     @r = WxPay::Service.invoke_unifiedorder(@order.prepay_params)

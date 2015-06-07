@@ -34,26 +34,39 @@ class Lb::Order < ActiveRecord::Base
     self.status = 'not_paid'
   end
 
-  scope :paid_or_delivered_or_closed, -> { where("status NOT IN ('paid', 'closed', 'delivered')") }
+  scope :paid_or_delivered_or_closed, -> { where("status NOT IN ('paid', 'closed', 'delivering')") }
+  scope :closed, -> { where(:status => :closed) }
 
   state_machine :status do
     after_transition :on => :pay, :do => :set_time_click
+    after_transition :on => :pay, :do => :user_next_free_set_to_false
+    after_transition :on => :pay, :do => :set_next_time_free
 
     event :pay do
       transition :from => :not_paid, :to => :paid
     end
 
     event :deliver do
-      transition :from => :paid, :to => :delivered
+      transition :from => :paid, :to => :delivering
     end
 
-    event :closed do
-      transition :from => [:delivered], :to => :closed
+    event :close do
+      transition :from => [:delivering], :to => :closed
     end
   end
 
   def set_time_click
-    Resque.enqueue_at 27.minute.from_now, TimeoutCalculated, self.id
+    Resque.enqueue_at 27.minute.from_now, FreeDeterminator, self.id
+  end
+
+  def user_next_free_set_to_false
+    self.user.update_column :next_time_free, false
+  end
+
+  def set_next_time_free
+    last_free_order_time = self.user.lb_orders.closed.where(:give_for_free => true).order("id DESC").first.try(:created_at) || 10.years.from_now
+    quantity = self.user.lb_orders.closed.where(["created_at > ?", last_free_order_time]).inject(0) { |sum, o| sum+=o.quantity; sum}
+    self.user.set_next_time_free if quantity >= 4
   end
 
   def prepay_params

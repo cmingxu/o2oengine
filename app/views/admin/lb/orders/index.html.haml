@@ -4,7 +4,8 @@
       %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path } 全部 
       %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :paid) } 已付
       %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :not_paid) } 未付
-      %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :delivered) } 已送
+      %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :delivering) } 已送
+      %a{:role => "button", :class => "btn btn-success ", :href => admin_lb_orders_path(:status => :closed) } 送完 
     .row
       %ul.list-group.xcm-list-group
         - @orders.each do |b|
@@ -27,8 +28,8 @@
             .xcm_actions.pull-right
               - if b.paid?
                 %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_lb_order_path(b) }= "派单"
-              - if b.delivered?
-                %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => done_deliver_admin_lb_order_path(b) }= "派单完成"
+              - if b.delivering?
+                = link_to "送水完成", done_deliver_admin_lb_order_path(b), :method => :patch, :class => "btn btn-default"
 
             .clearfix
 

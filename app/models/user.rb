@@ -79,7 +79,8 @@ class User < ActiveRecord::Base
   end
 
   def should_give_for_free?
-    self.lb_orders.paid_or_delivered_or_closed.blank? # first order
+    return true if self.next_time_free # for conditions where last order was delay
+    return true if self.lb_orders.paid_or_delivered_or_closed.blank? # first order
   end
 
   def password_valid?(pass)
