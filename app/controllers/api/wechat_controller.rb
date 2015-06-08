@@ -6,14 +6,14 @@ class Api::WechatController < Api::BaseController
     WechatUser.user_subscribe!(request)
     WechatUserActivity.log_activity!(request, "event", "subscribe")
     WECHAT_LOGGER.info "event subscribe #{request.message_hash}"
-    request.reply.text "您好， 欢迎关注aiheshui520!" 
+    request.reply.text "爱喝水，喝真水！首桶1分钱起送，点“我要订水”试喝" 
   end
 
   on :event, with: "unsubscribe" do |request, event|
     WechatUser.user_unsubscribe!(request)
     WechatUserActivity.log_activity!(request, "event", "unsubscribe")
     WECHAT_LOGGER.info "event unsubscribe #{request.message_hash}"
-    request.reply.text "您好， 欢迎关注aiheshui520!" 
+    request.reply.text "爱喝水，喝真水！首桶1分钱起送，点“我要订水”试喝"
   end
 
   on :event, with: "Location" do |request, event|
@@ -39,7 +39,7 @@ class Api::WechatController < Api::BaseController
   # 默认的文字信息responder
   on :text do |request, content|
     #request.reply.text "echo: #{content}" #Just echo
-    request.reply.text ""
+    request.reply.text "爱喝水，喝真水！首桶1分钱起送，点“我要订水”试喝"
   end
 
   # 当请求的文字信息内容为'help'时, 使用这个responder处理
