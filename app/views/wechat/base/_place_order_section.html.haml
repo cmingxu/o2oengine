@@ -13,5 +13,5 @@
       = current_user.calculated_price
     元
 
-.col-sm-6.col-md-6.text-right
+.col-sm-6.col-md-6.text-right.order_btn
   = link_to "我要订水", "#", :role => "button", :id => "place_order_btn", :class => "btn place_order_btn #{ current_user.can_place_order? ? '' : 'disabled'}"

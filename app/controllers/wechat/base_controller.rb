@@ -1,7 +1,7 @@
 class Wechat::BaseController < ApplicationController
   layout "wechat"
 
-  before_filter :login_required, :except => [:login_from_wechat, :notify]
+  before_filter :login_required, :except => [:login_from_wechat, :notify, :news]
   helper_method :current_user
 
  skip_before_filter :verify_authenticity_token, :only => :notify
@@ -17,6 +17,9 @@ class Wechat::BaseController < ApplicationController
 
   def index
     @lb_products = Lb::Product.all.order("position")
+  end
+
+  def news
   end
 
   def login_from_wechat

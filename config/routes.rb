@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     post 'place_order' => "base#place_order"
     post 'notify' => "base#notify"
     get 'orders' => "base#orders"
+    get 'news'   => "base#news"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
