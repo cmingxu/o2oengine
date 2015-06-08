@@ -19,7 +19,7 @@ function register_popup_event() {
     overlay_id = $(this).data("overlay");
     $("#overlay").fadeIn('fast');
     $("#" + overlay_id).show();
-    $("#" + overlay_id).one('click', function () {
+    $("#" + overlay_id).on('click', function () {
       event.stopPropagation();
     });
     $("#overlay").one('click', function () {
