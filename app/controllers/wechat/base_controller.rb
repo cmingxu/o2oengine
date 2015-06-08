@@ -16,7 +16,7 @@ class Wechat::BaseController < ApplicationController
   end
 
   def index
-    @lb_products = Lb::Product.all
+    @lb_products = Lb::Product.all.order("position")
   end
 
   def login_from_wechat
