@@ -25,6 +25,7 @@ function register_popup_event() {
     $("#overlay").one('click', function () {
       $("#" + overlay_id).hide();
       $(this).fadeOut('fast');
+      event.stopPropagation();
     });
   });
 }
