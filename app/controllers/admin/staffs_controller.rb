@@ -34,6 +34,6 @@ class Admin::StaffsController < Admin::BaseController
 
   private
   def staff_param
-    params.require(:staff).permit(:login, :password, :avatar, :mobile)
+    params.require(:staff).permit(:login, :password, :avatar, :mobile, :name)
   end
 end

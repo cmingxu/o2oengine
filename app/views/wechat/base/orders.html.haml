@@ -1,0 +1,26 @@
+.row-fluid.fixed-top.banner
+  = image_tag "logo.png", height: 30
+.row-fluid.orders_container
+  - if @order.nil? || @order.try(:staff).nil?
+    %p 暂无配送信息,
+    %p 
+      点击
+      = link_to "我要订水", wechat_path
+      下单。
+  - else
+    .progress_info
+      .staff_icon.pull-left
+        = image_tag @order.staff.avatar.thumb.url, :height => 50, :width => 50
+      水小哥
+      %span
+        = @order.staff.name
+      = @order.staff.mobile
+      已从回龙观配送站出发，预计
+      %span
+        = (@order.deliver_begin_at + 15.minutes).strftime("%H:%m")
+      到达， 记得为水哥开门。
+
+
+
+
+  
