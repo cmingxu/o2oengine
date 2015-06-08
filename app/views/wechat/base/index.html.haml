@@ -30,7 +30,7 @@
       - @lb_products.each do |p|
         %li.list-group-item{"data-product-id" => p.id}
           .product_icon
-            = image_tag(p.icon.try(:thumb).try(:url) || "http://placehold.it/50x50")
+            = image_tag((p.icon.try(:thumb).try(:url) || "http://placehold.it/50x50"), :height => 50, :width => 50)
           .product_name
             = p.name
           .product_detail

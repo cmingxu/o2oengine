@@ -51,7 +51,7 @@ class Lb::Order < ActiveRecord::Base
     end
 
     event :close do
-      transition :from => [:delivering], :to => :closed
+      transition :from => [:delivered], :to => :closed
     end
   end
 
