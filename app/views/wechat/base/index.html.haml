@@ -13,13 +13,13 @@
 .row.title.text-right
   %span
     .head_icon
-    = link_to "不知道喝那种水?", ""
+    = link_to "不知道喝哪种水?", ""
 .row.bar#address_section
   = render :partial => "address_section"
-.row.title.text-right
+.row.title.text-right.time_notice
   %span
     .head_icon
-    下单后27分钟棒棒达
+    下单后半小时棒棒达
 
 .row.footer#place_order_section
   = render :partial => "place_order_section"
@@ -51,10 +51,10 @@
             = text_field_tag :phone, current_user.phone, :placeholder => "请输入手机号码"
         %li
           .input_container
-            = text_field_tag :address, current_user.address, :placeholder => "请输详细地址"
+            = text_field_tag :address, current_user.address, :placeholder => "请输入详细地址"
         %li
-          .notice
-            备注：爱喝水目前仅开通海淀知春路周边配送，其他区域请勿下单
+          .time_notice
+            备注：爱喝水目前开通回龙观社区送水，其它区域暂未开通
         %li.text-center
           = submit_tag "确认"
 

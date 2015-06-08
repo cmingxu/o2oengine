@@ -123,6 +123,11 @@ html.turbolinks-progress-bar::before
   a
     color: $highlight-orange-color
     text-decoration: underline
+.time_notice
+  color: $main-font-color
+  .head_icon
+    background-image: url('<%= asset_path("shui_icon_gray.png") %>')!important
+    color: $main-font-color!important
 
 #product_section, #address_section
   dl
@@ -140,6 +145,17 @@ html.turbolinks-progress-bar::before
     span
       color: $highlight-color
       cursor: pointer
+
+#place_order_section
+  .quantity_counter
+    color: $highlight-color
+    font-size: 1.2em
+  height: 92px
+  .col-md-6
+    padding-top: 17px
+  .price
+    span
+      color: $highlight-orange-color
 
 .icon
   position: relative
@@ -227,8 +243,6 @@ html.turbolinks-progress-bar::before
       input[type='text']
         width: 100%
         border: none
-        font-size: $font-size-big
-        font-weight: $font-weight-bold
     input[type='submit']
       padding: 5px 20px
       background-color: $highlight-color
