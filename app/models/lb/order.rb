@@ -56,7 +56,7 @@ class Lb::Order < ActiveRecord::Base
   end
 
   def set_time_click
-    Resque.enqueue_at 27.minute.from_now, FreeDeterminator, self.id
+    #Resque.enqueue_at 27.minute.from_now, FreeDeterminator, self.id
   end
 
   def user_next_free_set_to_false
