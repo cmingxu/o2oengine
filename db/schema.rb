@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607010540) do
+ActiveRecord::Schema.define(version: 20150608090038) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20150607010540) do
     t.datetime "last_login_at"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "mobile",             limit: 255
   end
 
   create_table "user_wechats", force: :cascade do |t|

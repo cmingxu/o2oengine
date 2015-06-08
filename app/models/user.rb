@@ -17,6 +17,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  openid             :string(255)
+#  next_time_free     :boolean
 #
 
 class User < ActiveRecord::Base
@@ -81,6 +82,10 @@ class User < ActiveRecord::Base
   def should_give_for_free?
     return true if self.next_time_free # for conditions where last order was delay
     return true if self.lb_orders.paid_or_delivered_or_closed.blank? # first order
+  end
+
+  def last_processing_order
+    self.lb_orders.paid_or_delivered.last
   end
 
   def password_valid?(pass)

@@ -1,0 +1,24 @@
+.admin_form_head
+  - if @staff.persisted?
+    修改Staff
+  - else
+    新建Staff
+
+= form_for([:admin, @staff]) do |f|
+  .form_body
+    .row
+      = f.label :login, "登陆名", :class => "col-md-3"
+      = f.text_field :login, :class => "col-md-6"
+    .row
+      = f.label :password, "密码", :class => "col-md-3"
+      = f.text_field :password, :class => "col-md-6"
+    .row
+      = f.label :mobile, "电话", :class => "col-md-3"
+      = f.number_field :mobile, :class => "col-md-6"
+    .row
+      = image_tag @staff.avatar.try(:thumb).try(:url) || "http://placehold.it/40x40"
+      = f.file_field :avatar
+  .actions
+    = f.submit "提交", :class => "btn btn-success", :id => "submit_btn"
+    = link_to "取消", "javascript:close_popup()", :role => "button", :class => "btn btn-default"
+

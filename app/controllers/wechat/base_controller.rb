@@ -109,6 +109,7 @@ class Wechat::BaseController < ApplicationController
   end
 
   def orders
+    @order = current_user.last_processing_order
   end
 
   def failure

@@ -17,6 +17,7 @@
 
 class Staff < ActiveRecord::Base
   mount_uploader :avatar, StaffAvatarUploader
+  attr_accessor :password
   def password_valid?(pass)
     self.encrypted_password == User.encrypted_password(pass, self.salt)
   end

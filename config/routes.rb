@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :admin do
+  get 'staffs/index'
+  end
+
+  namespace :admin do
+  get 'staffs/edit'
+  end
+
+  namespace :admin do
+  get 'staffs/new'
+  end
+
     ResqueWeb::Engine.eager_load!
 
   require 'resque_web'
@@ -48,6 +60,7 @@ Rails.application.routes.draw do
     resources :order_items
     resources :orders
     resources :products
+    resources :staffs
 
     namespace :lb do
       resources :products do

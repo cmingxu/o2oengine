@@ -22,6 +22,7 @@
 #  bank_type        :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  give_for_free    :boolean
 #
 
 require 'test_helper'

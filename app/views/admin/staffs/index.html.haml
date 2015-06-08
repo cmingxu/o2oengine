@@ -1,0 +1,31 @@
+.staffs.index_page
+  .container
+    .row.xcm_index_header
+      .btn-group{:role => "group"}
+        %a.btn.btn-default.disabled{:role => "button"}= fa_icon(:list)
+        %a.btn.btn-default{:role => "button", :href => new_admin_staff_path}= fa_icon("arrows")
+
+      %a{:role => "button", :class => "btn btn-success pull-right popup", "data-remote-url" => new_admin_staff_path }= fa_icon("fw plus") + "新建门店"
+    .row
+      %ul.list-group.xcm-list-group
+        - @staffs.each do |b|
+          %li.list-group-item
+            .xcm_item_icon
+              = image_tag b.avatar.thumb.url
+            .xcm_item_name_and_desc
+              .xcm_item_name
+                = b.login
+                (
+                = b.mobile
+                )
+              .xcm_item_desc
+
+            .xcm_actions.pull-right
+              %a{:role => "button", :class => "btn btn-default popup", "data-remote-url" => edit_admin_staff_path(b) }= "修改Staff"
+              = dropdown "移动/删除" do
+                = dropdown_item "删除", admin_staff_path(b),  :data => {:confirm => "删除分类？", :method => :delete}
+
+            .clearfix
+
+
+

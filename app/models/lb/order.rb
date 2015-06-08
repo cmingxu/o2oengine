@@ -22,6 +22,7 @@
 #  bank_type        :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  give_for_free    :boolean
 #
 
 class Lb::Order < ActiveRecord::Base
@@ -34,7 +35,8 @@ class Lb::Order < ActiveRecord::Base
     self.status = 'not_paid'
   end
 
-  scope :paid_or_delivered_or_closed, -> { where("status NOT IN ('paid', 'closed', 'delivering')") }
+  scope :paid_or_delivered_or_closed, -> { where("status IN ('paid', 'closed', 'delivering')") }
+  scope :paid_or_delivered, -> { where("status IN ('paid', 'delivering')") }
   scope :closed, -> { where(:status => :closed) }
 
   state_machine :status do
