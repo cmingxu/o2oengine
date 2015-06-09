@@ -6,6 +6,15 @@ var nonceStr = '<%= @pay_config[:nonceStr] %>';
 var signType = '<%= @pay_config[:signType] %>';
 var paySign = '<%= @pay_config[:paySign] %>';
 
+
+alert(package);
+alert(timeStamp);
+alert(nonceStr);
+alert(signType);
+alert(paySign);
+
+alert(wx.chooseWXPay);
+
 wx.chooseWXPay({
   timestamp: timeStamp,
   nonceStr: nonceStr,
