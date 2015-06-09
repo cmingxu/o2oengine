@@ -2,7 +2,7 @@
   = image_tag "logo.png", height: 30
 .row.orders_container
   .progress_info
-    - if @order.nil? || @order.try(:staff).nil?
+    - if @order.nil?
       %p 暂无配送信息,
       %p
         点击
