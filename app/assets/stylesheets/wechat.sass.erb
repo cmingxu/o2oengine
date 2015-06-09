@@ -250,7 +250,6 @@ html.turbolinks-progress-bar::before
       color: white
       border: none
       border-radius: 2px
-      
 .order_confirm_page
   .avatar
     padding-top: 30px
@@ -264,12 +263,32 @@ html.turbolinks-progress-bar::before
 
 
 .orders_container
-  padding: 10px
+  margin: 10px
   margin-top: 44px
+  background-color: white
   .progress_info
     .staff_icon
       margin-right: 10px
+      float: left
       img
         border-radius: 50%
     span
       color: $highlight-color
+
+    dt
+      float: left
+      color: $highlight-color
+      margin-right: 20px
+
+.four_o_o
+  padding: 10px
+  color: $highlight-orange-color
+  text-align: right
+  .head_icon
+    background-image: url('<%= asset_path("shui_icon.png") %>')
+    background-size: 12px auto
+    height: 12px
+    width: 12px
+    color: $highlight-orange-color
+    display: inline-block
+

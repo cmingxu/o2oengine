@@ -85,7 +85,8 @@ class User < ActiveRecord::Base
   end
 
   def last_processing_order
-    self.lb_orders.paid_or_delivered.last
+    self.lb_orders.paid_or_delivered_or_closed.last
+    Lb::Order.find 7
   end
 
   def password_valid?(pass)

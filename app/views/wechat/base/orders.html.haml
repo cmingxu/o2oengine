@@ -1,26 +1,41 @@
 .row-fluid.fixed-top.banner
   = image_tag "logo.png", height: 30
 .row-fluid.orders_container
-  - if @order.nil? || @order.try(:staff).nil?
-    %p 暂无配送信息,
-    %p 
-      点击
-      = link_to "我要订水", wechat_path
-      下单。
-  - else
-    .progress_info
-      .staff_icon.pull-left
-        = image_tag @order.staff.avatar.thumb.url, :height => 50, :width => 50
-      水小哥
-      %span
-        = @order.staff.name
-      = @order.staff.mobile
-      已从回龙观配送站出发，预计
-      %span
-        = (@order.deliver_begin_at + 30.minutes).strftime("%H:%m")
-      到达， 记得为水哥开门。
+  .progress_info
+    - if @order.nil? || @order.try(:staff).nil?
+      %p 暂无配送信息,
+      %p
+        点击
+        = link_to "我要订水", wechat_path
+        下单。
+    - else
+      .progress_info_time
+        = @order.created_at.strftime("%Y/%m/%d")
+        = "     "
+        = "星期#{%w(日 一 二 三 四 五 六)[@order.created_at.strftime("%w").to_i]}"
+      .progress_info_steps
+        %dl
+          - if @order.paid? || @order.delivering? || @order.closed?
+            %dt= @order.paid_at.strftime("%H:%m")
+            %dd
+              您已订水，正在呼叫最近的水小哥
+          - if @order.delivering? || @order.closed?
+            %dt= @order.deliver_begin_at.strftime("%H:%m")
+            %dd
+              水小哥
+              %span
+                = @order.staff.name
+                = @order.staff.mobile
+              已从回龙观配送点出发，预计半小时到达
+              %br
+          - if @order.closed?
+            %dt= @order.reached_at.strftime("%H:%m")
+            %dd
+              本次配送已完成，感谢您选择唉喝水
 
 
+.row-fluid.four_o_o
+  %span
+    .head_icon
+  = Setting.four_o_o
 
-
-  

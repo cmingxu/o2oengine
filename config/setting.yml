@@ -2,6 +2,7 @@ default: &default
   title: "爱喝水"
   sitename: "爱喝水"
   amap_key: "2b783687b92d2f0c3ebc2020bdc29689"
+  four_o_o: "400-117-927"
 
 
 development:
