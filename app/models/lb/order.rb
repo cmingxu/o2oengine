@@ -66,8 +66,8 @@ class Lb::Order < ActiveRecord::Base
   end
 
   def set_next_time_free
-    last_free_order_time = self.user.lb_orders.closed.where(:give_for_free => true).order("id DESC").first.try(:created_at) || 10.years.from_now
-    quantity = self.user.lb_orders.closed.where(["created_at > ?", last_free_order_time]).inject(0) { |sum, o| sum+=o.quantity; sum}
+    last_free_order_time = self.user.lb_orders.paid_or_delivered_or_closed.where(:give_for_free => true).order("id DESC").first.try(:created_at) || 10.years.from_now
+    quantity = self.user.lb_orders.paid_or_delivered_or_closed.where(["created_at > ?", last_free_order_time]).inject(0) { |sum, o| sum+=o.quantity; sum}
     self.user.set_next_time_free if quantity >= 4
   end
 
