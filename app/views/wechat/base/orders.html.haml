@@ -1,6 +1,6 @@
-.row-fluid.fixed-top.banner
+.row.fixed-top.banner
   = image_tag "logo.png", height: 30
-.row-fluid.orders_container
+.row.orders_container
   .progress_info
     - if @order.nil? || @order.try(:staff).nil?
       %p 暂无配送信息,
